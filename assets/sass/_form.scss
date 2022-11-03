@@ -1,0 +1,312 @@
+.form-control{
+  border-color:#838383;
+}
+
+.required-sign{
+  .text-warning{
+    line-height: 1;
+    position: absolute;
+    font-size: 32px;
+    right: 0;
+    top: 1px;
+  }
+
+}
+
+.form{
+  &-footer{
+    .text-small{
+      color:#404a45;
+    }
+  }
+
+  &-check{
+    padding-left:0;
+    .check-container{
+      display: block;
+      position: relative;
+      padding-left: 30px;
+      cursor: pointer;
+      font-size: 16px;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      margin: 0;
+      line-height: 22px;
+      //font-weight: 500;
+      input{
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+        height: 0;
+        width: 0;
+      }
+
+      input:checked~.checkmark{
+        background-color: $color_primary;
+        &:after{
+          display: block;
+          //background-color: $color_primary;
+        }
+      }
+
+      .checkmark{
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 24px;
+        width: 24px;
+        /* background-color: #eee; */
+        border: 2px solid $color_primary;
+        border-radius: 0.2rem;
+        //background-color: $color_primary_light;
+
+        &:after{
+          content: "";
+          position: absolute;
+          display: none;
+          left: 7px;
+          top: 2px;
+          width: 6px;
+          height: 12px;
+          /* width: 5px; */
+          border: solid #fff;
+          border-width: 0 2px 2px 0;
+          -webkit-transform: rotate(45deg);
+          -ms-transform: rotate(45deg);
+          transform: rotate(41deg);
+        }
+
+        &:hover{
+          background-color: $color_primary_light;
+        }
+      }
+
+      &:hover{
+        input~.checkmark{
+          //background-color: #ccc;
+        }
+      }
+    }
+    &-input{
+
+    }
+  }
+}
+
+.card-images{
+  padding-top:10px;
+  span{
+    display: inline-block;
+    position: relative;
+    &:not(:last-child){
+      margin-right:5px;
+    }
+    img{
+      //max-width:50px;
+      -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+      filter: grayscale(100%);
+    }
+
+    &:after{
+      content:'';
+      position: absolute;
+      top:0;
+      left:0;
+      right:0;
+      bottom:0;
+      //background-color: rgba(0, 0, 0, 0.64);
+      background-color: rgba(131, 131, 131, 0.62);
+      //background-color: rgb(75 127 103 / 75%);
+
+    }
+
+    &.active{
+      img{
+        -webkit-filter: grayscale(0); /* Safari 6.0 - 9.0 */
+        filter: grayscale(0);
+      }
+      &:after{
+        background-color: rgba(0, 0, 0, 0);
+      }
+    }
+  }
+
+  .card_icon{
+    &.visa{
+      .visa{
+        //border: 2px solid #d8d8d8;
+        box-shadow: 0 1px 3px #00000033;
+        img{
+          -webkit-filter: grayscale(0); /* Safari 6.0 - 9.0 */
+          filter: grayscale(0);
+        }
+        &:after{
+          background-color: rgba(0, 0, 0, 0);
+        }
+      }
+
+      .master-card{
+        img{
+          -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+          filter: grayscale(100%);
+        }
+        &:after{
+          background-color: rgba(131, 131, 131, 0.62);
+        }
+      }
+
+      .american-express{
+        img{
+          -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+          filter: grayscale(100%);
+        }
+        &:after{
+          background-color: rgba(131, 131, 131, 0.62);
+        }
+      }
+
+      .discover{
+        img{
+          -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+          filter: grayscale(100%);
+        }
+        &:after{
+          background-color: rgba(131, 131, 131, 0.62);
+        }
+      }
+    }
+    &.mastercard{
+      .master-card{
+        //border: 2px solid #d8d8d8;
+        box-shadow: 0 1px 3px #00000033;
+        img{
+          -webkit-filter: grayscale(0); /* Safari 6.0 - 9.0 */
+          filter: grayscale(0);
+        }
+        &:after{
+          background-color: rgba(0, 0, 0, 0);
+        }
+      }
+
+      .visa{
+        img{
+          -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+          filter: grayscale(100%);
+        }
+        &:after{
+          background-color: rgba(131, 131, 131, 0.62);
+        }
+      }
+
+      .american-express{
+        img{
+          -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+          filter: grayscale(100%);
+        }
+        &:after{
+          background-color: rgba(131, 131, 131, 0.62);
+        }
+      }
+
+      .discover{
+        img{
+          -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+          filter: grayscale(100%);
+        }
+        &:after{
+          background-color: rgba(131, 131, 131, 0.62);
+        }
+      }
+    }
+    &.amex{
+      .american-express{
+        //border: 2px solid #d8d8d8;
+        box-shadow: 0 1px 3px #00000033;
+        img{
+          -webkit-filter: grayscale(0); /* Safari 6.0 - 9.0 */
+          filter: grayscale(0);
+        }
+        &:after{
+          background-color: rgba(0, 0, 0, 0);
+        }
+      }
+
+      .visa{
+        img{
+          -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+          filter: grayscale(100%);
+        }
+        &:after{
+          background-color: rgba(131, 131, 131, 0.62);
+        }
+      }
+
+      .master-card{
+        img{
+          -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+          filter: grayscale(100%);
+        }
+        &:after{
+          background-color: rgba(131, 131, 131, 0.62);
+        }
+      }
+
+      .discover{
+        img{
+          -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+          filter: grayscale(100%);
+        }
+        &:after{
+          background-color: rgba(131, 131, 131, 0.62);
+        }
+      }
+    }
+    &.discover{
+      .discover{
+        //border: 2px solid #d8d8d8;
+        box-shadow: 0 1px 3px #00000033;
+        img{
+          -webkit-filter: grayscale(0); /* Safari 6.0 - 9.0 */
+          filter: grayscale(0);
+        }
+        &:after{
+          background-color: rgba(0, 0, 0, 0);
+        }
+      }
+
+      .visa{
+        img{
+          -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+          filter: grayscale(100%);
+        }
+        &:after{
+          background-color: rgba(131, 131, 131, 0.62);
+        }
+      }
+
+      .master-card{
+        img{
+          -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+          filter: grayscale(100%);
+        }
+        &:after{
+          background-color: rgba(131, 131, 131, 0.62);
+        }
+      }
+
+      .american-express{
+        img{
+          -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+          filter: grayscale(100%);
+        }
+        &:after{
+          background-color: rgba(131, 131, 131, 0.62);
+        }
+      }
+    }
+  }
+
+}
+

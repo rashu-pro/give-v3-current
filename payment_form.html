@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Give to - Muslim Family Center</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/style.css?v=1.0.2">
+</head>
+<body>
+
+
+<div class="main-wrapper style-2-1">
+
+    <!-- HEADER -->
+    <header>
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col">
+                    <div class="logo-holder">
+                        <img src="assets/images/logo.png">
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="logo-holder text-right right-logo">
+                        <img src="assets/images/sectigo_trust_seal_sm_2x.png">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+    <div class="donation-wrapper">
+        <div class="container">
+
+            <!-- AMOUNT FORM-->
+            <div class="donation donation-initial-info content-body">
+                <div class="donation-title">
+                    <h4 class="h4 m-0 text-center text-uppercase">Pay Now</h4>
+                </div>
+
+                <div class="donation-body p-4">
+                    <div class="field-group" data-warning-message="Select an amount">
+                        <div class="choose-amount">
+                            <h4 class="field-group-title mb-2">Choose Amount</h4>
+
+                            <div class="row small-gutters">
+                                <div class="col-6 col-md-3">
+                                    <button class="btn btn-block btn-amount-box btn-amount-box-js" data-amount="20">
+                                        <span class="currency-icon">$</span>
+                                        <span class="amount-number">20</span>
+                                    </button>
+                                </div>
+
+                                <div class="col-6 col-md-3">
+                                    <button class="btn btn-block btn-amount-box btn-amount-box-js" data-amount="50">
+                                        <span class="currency-icon">$</span>
+                                        <span class="amount-number">50</span>
+                                    </button>
+                                </div>
+
+                                <div class="col-6 col-md-3">
+                                    <button class="btn btn-block btn-amount-box btn-amount-box-js" data-amount="100">
+                                        <span class="currency-icon">$</span>
+                                        <span class="amount-number">100</span>
+                                    </button>
+                                </div>
+
+                                <div class="col-6 col-md-3">
+                                    <button class="btn btn-block btn-amount-box btn-amount-box-js" data-amount="150">
+                                        <span class="currency-icon">$</span>
+                                        <span class="amount-number">150</span>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="other-amount mt-1">
+                                <div class="row">
+                                    <div class="col-12 col-md-6">
+                                        <label for="other-amount" class="input-label">Other Amount</label>
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="basic-addon1">
+                                                    <img src="assets/images/dollar.png" class="icon-black">
+                                                    <img src="assets/images/dollar_white.png" class="icon-white">
+                                                </span>
+                                            </div>
+                                            <input type="number" id="other-amount" class="form-control" name="OtherAmount">
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <!--HIDDEN FIELD TO CARRY AMOUNT DATA-->
+                            <input type="hidden" id="chosen-amount" name="Amount" value="">
+                        </div>
+                    </div>
+
+                    <div class="field-group">
+                        <div class="">
+                            <h4 class="field-group-title mb-2">Payment For</h4>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <select id="donate-to" class="form-control field-required" name="PaymentCategory" data-warning-message="Select an item" data-validation="select">
+                                            <option value="">Select One</option>
+                                            <option value="1">Zakat al Fitr</option>
+                                            <option value="2">Burial Fund</option>
+                                            <option value="3">Iftar Fund</option>
+                                            <option value="4">Ramdan Fund</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="field-group">
+                        <div class="">
+                            <h4 class="field-group-title mb-2">Contact Information</h4>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="zipcode" class="field-label"> <span class="lable-text">Zipcode</span> <span class="required-mark text-danger">*</span></label>
+                                        <input id="zipcode" type="text" class="form-control field-normal field-required" name="Zipcode" data-validation="plain" data-warning-message="Invalid Zip Code">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="email-shower">
+                                        <div class="form-check green-check term-check mb-4">
+                                            <label class="check-container" data-email-name="Email" data-email-label="Email">Send Receipt to Email
+                                                <input type="checkbox" class="form-check-input is-email-js">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="form-footer pb-4">
+                        <div class="donation-subtitle mb-3 mt-3">
+                            <p class="text-small m-0">Please note that you will see a charge from "Muslim Family Center" on your credit card statement.</p>
+                        </div>
+
+                        <button type="button" class="btn btn-next btn-next-js btn-long btn-primary">
+                            <span>Next</span>
+                            <span class="icon-after">
+                                <img src="assets/images/right_white_32.png">
+                            </span>
+                        </button>
+                    </div>
+
+
+                </div>
+            </div>
+
+            <!--SWIPER INDICATION-->
+            <div class="donation-processing content-body">
+                <div class="content-body-wrapper">
+                    <div class="donation-processing-content">
+                        <div class="field-group m-4">
+                            <h2 class="text-center h2 text-uppercase field-group-title">Swipe Card</h2>
+                            <div class="text-center swipe-image">
+                                <div class="swipe-animation">
+                                    <div class="credit-card">
+                                        <div class="scc-tripe"></div>
+                                    </div>
+                                    <div class="swiper-top"></div>
+                                    <div class="swiper-bottom">
+                                        <div class="light-indicator"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+    <footer class="footer">
+        <div class="footer-top">
+            <div class="container">
+                <h4 class="text-center">Contact With Us</h4>
+                <p class="text-center m-0">Please call us at <span class="text-highlight">(301) 234-7161</span> or email us to <a href="mailto:donations@muslimfamilycenter.com" class="text-link">donations@muslimfamilycenter.com</a> with any questions, comments, or concerns.</p>
+            </div>
+
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p class="text-center m-0"><a href="https://muslimfamilycenter.org" class="text-link" target="_blank">Muslim Family Center.</a> All Rights Reserved.</p>
+            </div>
+
+        </div>
+    </footer>
+
+
+    <!-- LOADER -->
+    <div class="loader-div">
+        <div class="loader-div-inner">
+            <div class="lds-spinner">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" data-backdrop="static" data-keyboard="false" id="confirm-modal">
+        <div class="modal-dialog modal-dialog-centered modal-sm modal-confirm">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <div class="donation-subtitle mb-3">
+                        <span class="modal-title donation-amount ">Donation Amount: </span><strong><span class="donation-amount-value row-value"></span></strong> <br />
+                        <span class="modal-title donate-for">Donation For:</span><strong> <span class="donate-for-value row-value"></span></strong>
+
+                        <div class="recurring-info" style="display:none">
+                            <span class="modal-title">Recurring Type: </span><strong> <span class="recurring-by-value row-value"></span></strong><br />
+
+                            <span class="modal-title recurring-length">Recurring Duration:</span><strong><span class="recurring-length-value row-value"></span></strong>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="btn-holder">
+                        <button type="button" class="btn btn-dark" id="modal-btn-no"><img src="assets/images/cancel_white_40.png" class="img-left">Cancel</button>
+                        <button type="button" class="btn btn-success" id="modal-btn-yes">Yes <img src="assets/images/tick-mark_white_40.png" class="img-right"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"></script>
+<script src="assets/js/jquery.cardcheck.min.js"></script>
+
+<script src="assets/js/script.js?v=1.0.2"></script>
+</body>
+</html>

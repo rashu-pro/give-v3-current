@@ -1,0 +1,61 @@
+.btn{
+  transition:0.2s all ease;
+  @media (min-width:768px) {
+    &-long{
+      min-width:250px;
+    }
+  }
+  &-amount-box{
+    border-radius: 2px;
+    font-size: 24px;
+    font-weight: 600;
+    padding: 18px 0;
+    box-shadow: 0px 0px 2px #21252936;
+    color: $color_primary;
+    border:1px solid $color_primary;
+    margin-bottom:10px;
+
+    &:hover{
+      background-color: $color_primary_light;
+      color:$color_primary;
+    }
+    &.active{
+      background-color: $color_primary;
+      color:#fff;
+    }
+  }
+
+  &-fill{
+    background-color: $color_primary;
+    color:#fff;
+    font-size: 1rem;
+    line-height: 1.5;
+    padding-bottom: .75rem;
+    padding-top: .75rem;
+    font-weight: 600;
+    letter-spacing: .02em;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    box-shadow: 1px 6px 14px rgba(0, 0, 0, 0.10);
+    &:hover,
+    &:focus{
+      color:#fff;
+      background-color: $color_primary_dark;
+      box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.40);
+      transform:translateY(-1px);
+    }
+  }
+
+  &:hover{
+    transition:0.2s all ease;
+  }
+
+  .icon-lock{
+    position: relative;
+    top: -1px;
+    margin-right: 10px;
+  }
+}
+
+
+

@@ -1,0 +1,29 @@
+.modal{
+  &-content{
+    .btn{
+      padding:15px 25px;
+      img{
+        max-height:20px;
+      }
+      .img-left{
+        margin-right:6px;
+      }
+      .img-right{
+        margin-left:6px;
+      }
+    }
+  }
+}
+
+
+.weight-medium{
+  font-weight: 400;
+}
+
+.btn-holder{
+  .btn{
+    &:not(:last-child){
+      margin-right:15px;
+    }
+  }
+}

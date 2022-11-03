@@ -1,0 +1,437 @@
+@import "swipe_animation";
+$color_primary_2: #038246;
+.main-wrapper{
+  &.style-2{
+    header{
+      position: relative;
+      box-shadow: -2px -1px 5px 0px rgb(0 0 0 / 20%);
+    }
+    .field{
+      &-group{
+        border:0;
+        margin-top:0;
+        padding-top:0px;
+        &-title{
+          padding:0;
+          position: static;
+          color:#202020;
+          font-weight: 600;
+          text-transform: uppercase;
+          font-size:22px;
+        }
+      }
+
+      &-label{
+        position: static;
+        font-size: 20px;
+        margin-bottom:3px;
+        font-weight:500;
+      }
+    }
+
+    .other-amount{
+      .form-control{
+        height:50px;
+      }
+      .input{
+        &-group{
+          &-text{
+            border-color: #8b8b8b;
+            font-size: 22px;
+            font-weight: 700;
+            padding: 0 18px;
+            color: #202020;
+            border-width:0.125rem;
+            border-right:0;
+
+            img{
+              max-width:24px;
+            }
+          }
+        }
+      }
+    }
+
+    select.form-control{
+      height:50px;
+    }
+
+    .btn{
+      font-weight:500;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      box-shadow:-1px 5px 6px 2px #20202036;
+
+      &-next{
+        font-size:20px;
+        padding:15px 30px;
+        background-color: $color_primary_2;
+        border-color:$color_primary_2;
+      }
+      &-amount{
+        &-box{
+          border-color:$color_primary_2;
+          color:$color_primary_2;
+          border-width:0.125rem;
+          font-size:20px;
+          border-radius:10px;
+          padding:10px 0;
+          &:hover{
+            background-color: #dff1ff;
+          }
+          &:focus{
+            box-shadow:none;
+          }
+          &.active{
+            background-color: $color_primary_2;
+            color:#fff;
+          }
+
+          @media (min-width:768px){
+            margin-bottom:15px;
+          }
+        }
+      }
+      .icon-after{
+        position: relative;
+        top:-1px;
+      }
+    }
+
+    .form-control{
+      border-width:0.125rem;
+    }
+
+    &-1{
+      header{
+        position: relative;
+        box-shadow: -2px -1px 5px 0px rgb(0 0 0 / 20%);
+      }
+      .other-amount{
+        .form-control{
+          height:50px;
+        }
+        .input{
+          &-group{
+            &-text{
+              border-color: #8b8b8b;
+              font-size: 22px;
+              font-weight: 700;
+              padding: 0 18px;
+              color: #202020;
+              //border-width:0.125rem;
+              border-right:0;
+
+              img{
+                max-width:24px;
+              }
+            }
+          }
+        }
+      }
+
+      .field{
+        &-group{
+          border-color:#000;
+          &-title{
+            top:-11px;
+            font-weight:600;
+            text-transform:uppercase;
+            font-size:20px;
+            color:#000;
+          }
+        }
+
+        &-label{
+          font-weight:500;
+        }
+      }
+
+      .btn{
+        padding:15px 30px;
+        font-size:20px;
+        text-transform: uppercase;
+        font-weight:600;
+        letter-spacing: 1px;
+
+        &-amount{
+          &-box{
+            border-color:$color_primary_2;
+            color:$color_primary_2;
+            //border-width:0.125rem;
+            //font-size:20px;
+            //border-radius:10px;
+            //padding:10px 0;
+            &:hover{
+              background-color: #dff1ff;
+            }
+            &:focus{
+              box-shadow:none;
+            }
+            &.active{
+              background-color: $color_primary_2;
+              color:#fff;
+            }
+
+            @media (min-width:768px){
+              margin-bottom:15px;
+            }
+          }
+        }
+
+        &-next{
+          background-color: $color_primary_2;
+          border-color:$color_primary_2;
+          box-shadow:-1px 5px 6px 2px #20202036;
+        }
+      }
+
+      .input-label{
+        font-size:18px;
+        font-weight:500;
+      }
+
+      .form{
+        &-check{
+          &.green-check{
+            .check-container{
+              font-weight:500;
+              font-size: 18px;
+              .checkmark{
+                border-color:#11683f;
+                border-color:$color_primary_2;
+              }
+
+              input{
+                &:checked{
+                  &~.checkmark{
+                    background-color: $color_primary_2;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
+      select.form-control{
+        height:50px;
+      }
+
+      .donation{
+        &-processing{
+          &-content{
+            .field{
+              &-group{
+                padding-bottom:40px;
+                &-title{
+                  font-size:28px;
+                  font-weight: 700;
+                  top:-17px;
+                }
+
+                @media (min-width:768px){
+                  max-width:550px;
+                  margin:50px auto!important;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+
+  }
+}
+
+.required-mark{
+  font-weight: 600;
+}
+
+.input{
+  &-group{
+    &-text{
+      border-color:#8b8b8b;
+    }
+  }
+}
+
+.content-body{
+  background-color: #fff;
+  &.donation-processing{
+    display: none;
+  }
+
+  &.thank-wrapper{
+    background-color: #f6f6f6;
+    padding:50px 30px;
+    &-inner{
+      background-color: #fff;
+      border-radius:15px;
+      box-shadow:0 16px 24px rgb(0 0 0 / 7%);
+      padding:30px 20px;
+    }
+
+    @media(min-width:576px){
+      background-color: #fff;
+    }
+  }
+}
+.thank-wrapper-inner{
+  background-color: #fff;
+  border-radius:15px;
+  box-shadow:0 16px 24px rgb(0 0 0 / 7%);
+  padding:30px 20px;
+  @media(min-width:576px){
+    background-color: #fff;
+    box-shadow:none;
+    text-align: center;
+  }
+}
+.h2{
+  font-size: 36px;
+  font-weight: 700;
+}
+
+.donation{
+  &-processing{
+    &-content{
+      padding:50px 0;
+      .field{
+        &-group{
+          &-title{
+            font-size:28px;
+            font-weight: 600;
+          }
+        }
+      }
+    }
+  }
+}
+
+.swipe-image{
+  img{
+    max-width:70%;
+  }
+}
+
+.font-500{
+  font-weight:500;
+}
+
+.font-600{
+  font-weight:600;
+}
+.swipe-image{
+  position: relative;
+}
+.swipe-success-image{
+  display: none;
+}
+.card-swiped{
+  .swipe-animation{
+    .credit-card{
+      display: none;
+    }
+  }
+  .swipe-success-image{
+    display: block;
+    position: absolute;
+    top: 62px;
+    left: 0;
+    right: 0;
+    z-index: 99;
+  }
+
+  .loader-div-inner{
+    text-align: center;
+    background: #fff;
+    color: #202020;
+    border-radius: 15px;
+    padding: 30px 15px;
+    max-width:500px;
+    margin:0 auto;
+    .lds-spinner div:after{
+      background-color:$color_primary_2;
+    }
+    .h2{
+      color:$color_primary_2;
+      font-size: 15px;
+    }
+  }
+
+}
+
+.logo-holder{
+  img{
+    max-height:70px;
+  }
+  &.right-logo{
+    img{
+      max-height:55px;
+    }
+  }
+  @media (min-width:768px){
+    &.right-logo{
+      img{
+        max-height:80px;
+      }
+    }
+    img{
+      max-height:85px;
+    }
+  }
+}
+
+.other-amount{
+  .input{
+    &-group{
+      &-text{
+        .icon-white{
+          display: none;
+        }
+      }
+
+      .form-control{
+        font-weight:500;
+        font-size: 18px;
+      }
+    }
+  }
+  &.active{
+    .input{
+      &-group{
+        &-text{
+          background-color: $color_primary_2;
+          border-color:$color_primary_2;
+          .icon-black{
+            display: none;
+          }
+          .icon-white{
+            display: inline-block;
+          }
+        }
+
+        .form-control{
+          border-color:$color_primary_2;
+        }
+      }
+    }
+  }
+}
+
+$color_success:#28a745;
+$color_danger:#dc3545;
+
+.form-control{
+  &.field-valid{
+    border-color:$color_success!important;
+    &:focus{
+      border-color:$color_success!important;
+    }
+  }
+  &.field-invalid{
+    border-color: $color_danger!important;
+  }
+}

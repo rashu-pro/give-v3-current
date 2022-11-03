@@ -1,0 +1,90 @@
+.swipe-animation{
+  position: relative;
+  width: 85%;
+  max-width:500px;
+  height: 170px;
+  margin: 0 auto;
+  overflow: hidden;
+  @media (min-width:768px){
+    height:244px;
+  }
+}
+
+.credit-card{
+  width: 44%;
+  max-width:160px;
+  height: 76px;
+  background: #dadada;
+  border-radius: 5px;
+  position: relative;
+  z-index: 2;
+  margin-top: 10px;
+  animation: swipe-card 2s ease-in-out infinite;
+
+  .scc-tripe{
+    position: absolute;
+    background: #434343;
+    width: 100%;
+    height: 13px;
+    bottom: 10px;
+  }
+}
+.swiper-top, .swiper-bottom{
+  border-radius:8px 8px 0 0;
+  position:absolute;
+  background: #434343;
+}
+.swiper-top{
+  height: 20px;
+  bottom: 105px;
+  z-index: 0;
+  width: 74%;
+  left: 13%;
+  @media (min-width:768px){
+    bottom:179px;
+  }
+}
+.swiper-bottom{
+  height: 100px;
+  bottom: 0;
+  z-index: 3;
+  width: 80%;
+  left: 10%;
+
+  @media (min-width:768px) {
+    height:174px;
+  }
+
+  .light-indicator{
+    position:absolute;
+    top:10px;
+    right:15px;
+    width: 10px;
+    height: 10px;
+    border-radius:50%;
+    background:#dadada;
+    animation: reader-light 2s ease-in-out infinite;
+  }
+}
+
+@keyframes swipe-card{
+  0%{
+    margin-left: -150px;
+    transform:rotate(25deg);
+  }
+  50%{
+    transform:rotate(0deg);
+  }
+  100%{
+    margin-left: 500px;
+    transform:rotate(-25deg);
+  }
+}
+@keyframes reader-light{
+  0%{
+    background: #d2dacc;
+  }
+  60%{
+    background: #7cfd73;
+  }
+}
