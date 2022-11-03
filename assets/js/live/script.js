@@ -69,12 +69,12 @@ $(function (event) {
 
     if ($('.form-control').length > 0) {
         var self = $('.form-control');
-        if (self.val() == '') {
-            self.prev().removeClass('focused');
-        }
-        else {
-            self.prev().addClass('focused');
-        }
+        $('.form-control').each(function (i, element) {
+            if($(element).val()){
+                $(element).closest('.form-group').find('.field-label').addClass('focused');
+            }
+        });
+
         $('.form-control').on('focus', function () {
             var self = $(this);
             self.prev().addClass('focused');

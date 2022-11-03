@@ -167,8 +167,11 @@
                                                 </div>
                                                 <div class="col-sm-6">
                                                     <div class="form-group">
-                                                        <label for="phone-number" class="field-label required-sign"><span class="text-warning">*</span> <span class="lable-text">Phone Number</span></label>
-                                                        <input id="phone-number" type="text" class="form-control field-normal format-phone">
+                                                        <div class="phone-number-validator-wrapper">
+                                                            <label for="phone-number" class="field-label required-sign"><span class="text-warning">*</span> <span class="lable-text">Phone Number</span></label>
+                                                            <input id="phone-number" type="text" class="form-control phone-number-validator field-normal">
+                                                            <input type="hidden" class="phone-number-hidden" name="PhoneNumber">
+                                                        </div>
                                                     </div>
 
                                                 </div>
@@ -325,7 +328,7 @@
 <script src="assets/js/phone_validator.js"></script>
 
 <!--<script src="assets/js/script.js?v=1.0.1"></script>-->
-<script src="assets/js/live/script.js?v=1.0.1"></script>
+<script src="assets/js/live/script.js?v=1.0.2"></script>
 
 </body>
 </html>

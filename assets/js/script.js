@@ -2,18 +2,15 @@
  * Created by Rashu on 22-04-21.
  */
 
-$(function (event) {
-    console.log('phew!');
-
+$(function () {
     let otherAmount = $('#other-amount'),
         btnAmount = $('.btn-amount-box-js'),
         chosenAmount = $('#chosen-amount');
 
     if($('.form-control').length>0){
-
         $('.form-control').each(function (i, element) {
-            if($(element).val()!==''){
-                $(element).prev().addClass('focused');
+            if($(element).val()){
+                $(element).closest('.form-group').find('.field-label').addClass('focused');
             }
         });
 
