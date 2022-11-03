@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Give to - Muslim Family Center</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/style.css">
+    <!-- intl-tel-input -->
+    <link rel="stylesheet" href="assets/plugins/intl-tel-input/css/intlTelInput.min.css">
+    <link rel="stylesheet" href="assets/css/style.css?v=1.0.1">
 </head>
 <body>
 
@@ -165,8 +167,11 @@
                                                 </div>
                                                 <div class="col-sm-6">
                                                     <div class="form-group">
-                                                        <label for="phone-number" class="field-label required-sign"><span class="text-warning">*</span> <span class="lable-text">Phone Number</span></label>
-                                                        <input id="phone-number" type="text" class="form-control field-normal format-phone">
+                                                        <div class="phone-number-validator-wrapper">
+                                                            <label for="phone-number" class="field-label required-sign"><span class="text-warning">*</span> <span class="lable-text">Phone Number</span></label>
+                                                            <input id="phone-number" type="text" class="form-control phone-number-validator field-normal">
+                                                            <input type="hidden" class="phone-number-hidden" name="PhoneNumber">
+                                                        </div>
                                                     </div>
 
                                                 </div>
@@ -277,7 +282,7 @@
                                             Employer Idenfication Number 46-5035493.</p>
                                     </div>
                                     <div class="term-check mb-1 mt-4">
-                                        <div class="form-check term-check">
+                                        <div class="form-check term-check mb-4">
                                             <label class="check-container">Cover my fees 2.5%
                                                 <input type="checkbox" class="form-check-input" id="donate-fee-cover">
                                                 <span class="checkmark"></span>
@@ -286,7 +291,7 @@
                                     </div>
                                     <button type="submit" id="btnCharge" name="btnCharge" class="btn btn-long btn-fill">
                                         <span class="icon-lock"><img src="assets/images/icon_lock.png"></span>
-                                        <span>Donate Now </span>&nbsp;<span style="font-weight:700" id="donate-amount"></span> &nbsp;&nbsp;&nbsp;<span id="loading" style="display:none"><img src="/Content/assets/img/ajax-loader.gif"></span>
+                                        <span>Donate Now </span>&nbsp;<span style="font-weight:700" id="donate-amount"></span> &nbsp;&nbsp;&nbsp;<span id="loading" style="display:none"><img src="assets/images/ajax-loader.gif"></span>
                                     </button>
                                 </div>
                             </div>
@@ -348,8 +353,13 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"></script>
 <script src="assets/js/jquery.cardcheck.min.js"></script>
+<!-- intl-tel-input -->
+<script src="assets/plugins/intl-tel-input/js/intlTelInput.min.js"></script>
+<!-- PHONE VALIDATOR -->
+<script src="assets/js/phone_validator.js"></script>
 
-<script src="assets/js/live/script.js"></script>
+<!--<script src="assets/js/script.js?v=1.0.1"></script>-->
+<script src="assets/js/live/script.js?v=1.0.1"></script>
 
 </body>
 </html>

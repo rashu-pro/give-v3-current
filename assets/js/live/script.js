@@ -317,8 +317,6 @@ $(function (event) {
             var updatedAmount = parseFloat(amount) + parseFloat(fee);
             updatedAmount = updatedAmount.toFixed(2);
 
-            $('#txtAmount').val(updatedAmount);
-
             $('#donate-amount').html('$' + updatedAmount);
         }
 
