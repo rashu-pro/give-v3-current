@@ -12,6 +12,8 @@ Introduction - Give v3 (HTML Template)
 
 **CARD Validation** --jQuery.cardcheck (https://github.com/unruthless/jQuery.cardcheck) has been used for card validation
 
+======================================================
+
 **Screenshot**
 
 ![image](https://github.com/rashu-pro/give-v3/blob/master/screenshot.png)
