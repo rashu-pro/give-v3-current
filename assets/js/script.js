@@ -452,3 +452,49 @@ $(function () {
         }
     }
 });
+
+
+//=== form validation [client-side]
+let inputFieldSelector = '.form-control';
+let inputFieldRequiredSelector = '.form-group.required-group .form-control';
+let formGroupSelector = '.form-group';
+let invalidClassName = 'field-invalid';
+let validClassName = 'field-validated';
+let errorMessageClassName = 'error-message';
+let errorMessage = 'this field is required!';
+
+//=== on submit button click
+$(document).on('click', '#btnCharge', function (e){
+    e.preventDefault();
+    $(inputFieldRequiredSelector).each(function (i, element){
+        singleValidation($(element), $(element).closest(formGroupSelector), invalidClassName, validClassName, errorMessageClassName, errorMessage);
+    });
+    if($('.form-control.invalid').length>0) {
+        $('.form-control.invalid').first().focus();
+        return;
+    }
+    //=== submit the form
+    submitForm();
+});
+
+//=== on field keyup event
+$(document).on('keyup change', inputFieldRequiredSelector, function (e) {
+    let self = $(this);
+    if(self.val().length>0){
+        self.removeClass('invalid');
+        self.removeClass('field-invalid');
+        self.closest('.form-group').find('.error-message').remove();
+    }
+});
+
+//=== on field blur event
+$(document).on('blur', inputFieldRequiredSelector, function (e){
+    singleValidation($(this), $(this).closest(formGroupSelector), invalidClassName, validClassName, errorMessageClassName, errorMessage);
+});
+
+//=== allow only number
+$(document).on('keypress', '.input-phone-number', function (e){
+    let self = $(this);
+    if(e.which===45) return;
+    if(e.which<48 || e.which>58) e.preventDefault();
+});

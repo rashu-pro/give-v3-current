@@ -156,9 +156,17 @@ header{
 .other-amount .form-control{
   height:70px;
 }
-.form-control:focus{
-  box-shadow:none;
-  border:2px solid #202020;
+.form-control{
+  &.field-invalid{
+    &:focus{
+      box-shadow:none;
+      border:2px solid #202020;
+    }
+  }
+  &:focus{
+    box-shadow:none;
+    border:2px solid #202020;
+  }
 }
 .other-amount{
   position: relative;

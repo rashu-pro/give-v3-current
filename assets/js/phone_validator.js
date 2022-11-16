@@ -112,14 +112,14 @@ function errorHandling(iti, phoneNumber, phoneNumberWrapperSelectorName, alertMe
         showErrorMessage = 1;
         statusMessage = "Number is too short!";
         alertClass = 'text-danger';
-        isvalidClass = 'invalid';
+        isvalidClass = 'field-invalid';
     }
 
     if(!isValid && error === intlTelInputUtils.validationError.TOO_LONG){
         showErrorMessage = 1;
         statusMessage = "Number is too long!";
         alertClass = 'text-danger';
-        isvalidClass = 'invalid';
+        isvalidClass = 'field-invalid';
     }
 
     if(!isValid && error === intlTelInputUtils.validationError.IS_POSSIBLE){

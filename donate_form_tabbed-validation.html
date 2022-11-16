@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Give to - Muslim Family Center</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+    <!-- intl-tel-input -->
+    <link rel="stylesheet" href="assets/plugins/intl-tel-input/css/intlTelInput.min.css">
+    <link rel="stylesheet" href="assets/css/style.css?v=1.0.1">
+</head>
+<body>
+
+
+<div class="main-wrapper">
+    <header>
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col">
+                    <div class="logo-holder">
+                        <img src="assets/images/logo.png">
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="logo-holder text-right">
+                        <img src="assets/images/sectigo_trust_seal_sm_2x.png">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="donation-wrapper">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-sm-12 col-md-12 col-lg-12">
+                    <div class="donation">
+                        <div class="donation-title">
+                            <h4 class="h4 m-0">Donate Now</h4>
+                        </div>
+
+
+
+                        <div class="donation-body">
+
+                            <!--TAB HEAD====================-->
+                            <div class="tabbed-head">
+                                <ul class="nav">
+                                    <li class="nav-tabbed active"><a href="donate_form_tabbed.html"><span class="tab-image"><img src="assets/images/credit_card_white_bg.jpg"></span> </a> </li>
+                                    <li class="nav-tabbed"><a href="donate_form_tabbed-2.html"> <span class="tab-image"><img src="assets/images/ach_resized.jpg"></span> </a> </li>
+                                </ul>
+                            </div>
+
+                            <!--TAB CONTENT====================-->
+                            <div class="tabbed-content">
+                                <div class="field-group">
+                                    <div class="choose-amount">
+                                        <h4 class="field-group-title mb-3">Choose Amount</h4>
+
+                                        <div class="row small-gutters">
+                                            <div class="col-6 col-md-3">
+                                                <button class="btn btn-block btn-amount-box donateButton" data-value="50"><span class="currency-icon">$</span> <span class="amount-number">50</span> </button>
+                                            </div>
+                                            <div class="col-6 col-md-3">
+                                                <button class="btn btn-block btn-amount-box donateButton" data-value="100"><span class="currency-icon">$</span> <span class="amount-number">100</span> </button>
+                                            </div>
+                                            <div class="col-6 col-md-3">
+                                                <button class="btn btn-block btn-amount-box donateButton" data-value="150"><span class="currency-icon">$</span> <span class="amount-number">150</span> </button>
+                                            </div>
+                                            <div class="col-6 col-md-3">
+                                                <button class="btn btn-block btn-amount-box donateButton" data-value="200"><span class="currency-icon">$</span> <span class="amount-number">200</span> </button>
+                                            </div>
+                                        </div>
+
+                                        <div class="other-amount mt-4">
+                                            <label for="other-amount" class="field-label">Other amount</label>
+                                            <input id="other-amount" type="text" class="form-control" value="">
+                                        </div>
+
+                                        <input value="0" data-val="true" data-val-number="The field Amount must be a number." data-val-range="Amount must be greater than $1. MAX amount allowed is $5,000" data-val-range-max="5000" data-val-range-min="1" data-val-required="Amount is required" id="txtAmount" name="Amount" placeholder="$" type="hidden">
+
+
+                                        <div class="form-group required-group">
+                                            <input type="hidden" id="amountProcessingFee" class="form-control" name="amountProcessingFee" value="">
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="field-group">
+                                    <div class="choose-amount">
+                                        <h4 class="field-group-title mb-3">Donate to</h4>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group required-group">
+<!--                                                    <label for="donate-to" class="field-label">Donate to</label>-->
+                                                    <select id="donate-to" class="form-control" data-error="Select a category">
+                                                        <option value="">Select Category</option>
+                                                        <option value="1">Zakat al Fitr</option>
+                                                        <option value="2">Burial Fund</option>
+                                                        <option value="3">Iftar Fund</option>
+                                                        <option value="4">Ramdan Fund</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="field-group">
+                                    <h4 class="field-group-title">Recurring</h4>
+                                    <div class="recurring-wrapper">
+                                        <div class="button r" id="button-1">
+                                            <input type="checkbox" class="checkbox checkbox-recurring">
+                                            <div class="knobs"></div>
+                                            <div class="layer"></div>
+                                        </div>
+
+                                        <div class="recurring-period">
+                                            <div class="row pt-3">
+                                                <div class="col-sm-4">
+                                                    <div class="form-group">
+                                                        <label>Recurring by</label>
+                                                        <select class="form-control recurring-type">
+                                                            <option value="0">Select One</option>
+                                                            <option value="1">Daily</option>
+                                                            <option value="2">Weekly</option>
+                                                            <option value="3">Monthly</option>
+                                                        </select>
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="col-sm-4">
+                                                    <div class="form-group recurring-duration">
+                                                        <label>Recurring Duration</label>
+                                                        <select class="form-control">
+                                                            <option>Select Duration</option>
+                                                            <option value="1">1</option>
+                                                            <option value="2">2</option>
+                                                            <option value="3">3</option>
+                                                            <option value="4">4</option>
+                                                        </select>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="field-group">
+                                    <div class="payment-wrapper section-wrapper">
+                                        <h4 class="field-group-title mb-4">Payment Details:</h4>
+                                        <div class="form-group required-group">
+                                            <label for="email" class="field-label required-sign"><span class="text-warning">*</span> <span class="lable-text">Email</span></label>
+                                            <input id="email" type="email" class="form-control field-normal validation-email" data-error-message="Invalid email address" value="">
+                                        </div>
+
+                                        <div class="">
+                                            <div class="row small-gutters">
+                                                <div class="col-sm-6">
+                                                    <div class="form-group required-group">
+                                                        <label for="name" class="field-label required-sign"><span class="text-warning">*</span> <span class="lable-text">Name on Card</span></label>
+                                                        <input id="name" type="text" class="form-control field-normal validation-text" data-min-length="6" name="Mr. Raihan">
+                                                    </div>
+
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div class="form-group required-group">
+                                                        <div class="phone-number-validator-wrapper">
+                                                            <label for="phone-number" class="field-label required-sign"><span class="text-warning">*</span> <span class="lable-text">Phone Number</span></label>
+                                                            <input id="phone-number" type="text" class="form-control phone-number-validator input-phone-number field-normal">
+                                                            <input type="hidden" class="phone-number-hidden" name="PhoneNumber">
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="">
+                                            <div class="row small-gutters">
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <div class="position-relative card-holder">
+                                                            <label class="field-label required-sign" for="card-number"><span class="text-warning">*</span> <span class="lable-text">Card Number</span></label>
+                                                            <input type="text" class="form-control field-normal format-card-number" id="card-number">
+                                                            <!--<span class="card_icon"></span>-->
+                                                        </div>
+
+                                                        <div class="card-images">
+                                                            <div class="card_icon">
+                                                                <span class="visa"><img src="assets/images/visa_60x40.jpg"> </span>
+                                                                <span class="master-card"><img src="assets/images/master_card_60x40.png"> </span>
+                                                                <span class="american-express"><img src="assets/images/american_express_60x40.png"> </span>
+                                                                <span class="discover"><img src="assets/images/discover_card.png"> </span>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+
+
+                                                </div>
+
+                                                <div class="col-sm-3">
+                                                    <div class="form-group position-relative">
+                                                        <label for="expiry-card" class="field-label">MM/YY</label>
+                                                        <input id="expiry-card" type="text" class="form-control field-normal format-expiry">
+                                                    </div>
+
+                                                </div>
+                                                <div class="form-group col-sm-3">
+                                                    <div class="position-relative">
+                                                        <label for="cvv" class="field-label">CVV</label>
+                                                        <input id="cvv" type="text" class="form-control field-normal format-cvv">
+                                                        <span class="icon-cvv">
+                                                        <img src="assets/images/icon-vcccode.png">
+                                                    </span>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="field-group">
+                                    <div class="address wrapper section-wrapper">
+                                        <h4 class="field-group-title mb-3">Address:</h4>
+                                        <div class="">
+                                            <div class="row small-gutters">
+                                                <div class="col-sm-4">
+                                                    <div class="form-group">
+                                                        <label for="state" class="mb-1">State</label>
+                                                        <select id="state" class="form-control field-normal">
+                                                            <option>Select State</option>
+                                                            <option>Alabama</option>
+                                                            <option>Georgia</option>
+                                                            <option>Washinton</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-sm-4">
+                                                    <div class="form-group">
+                                                        <label for="city" class="mb-1">City</label>
+                                                        <select id="city" class="form-control field-normal">
+                                                            <option>Select State</option>
+                                                            <option>Alabama</option>
+                                                            <option>Georgia</option>
+                                                            <option>Washinton</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-sm-4">
+                                                    <div class="form-group">
+                                                        <label for="postal-code" class="mb-1">Postal Code</label>
+                                                        <input id="postal-code" type="text" class="form-control field-normal">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="street-address" class="field-label">Street Address</label>
+                                            <input id="street-address" type="text" class="form-control field-normal">
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="form-group mt-3">
+                                    <label for="note">Note</label>
+                                    <textarea id="note" class="form-control" rows="4"></textarea>
+                                </div>
+
+                                <div class="form-footer">
+                                    <div class="donation-subtitle mb-3">
+                                        <p class="text-small m-0">Please note that you will see a charge from "Muslim Family Center" on your credit card statement.<br>
+                                            Muslim Family Center is a tax exempt organization under section 501(c)(3) of Internal Revenue Code.
+                                            Employer Idenfication Number 46-5035493.</p>
+                                    </div>
+                                    <div class="term-check mb-1 mt-4">
+                                        <div class="form-check term-check mb-4">
+                                            <label class="check-container">Cover my fees 2.5%
+                                                <input type="checkbox" class="form-check-input" id="donate-fee-cover">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <button type="submit" id="btnCharge" name="btnCharge" class="btn btn-long btn-fill">
+                                        <span class="icon-lock"><img src="assets/images/icon_lock.png"></span>
+                                        <span>Donate Now </span>&nbsp;<span style="font-weight:700" id="donate-amount"></span> &nbsp;&nbsp;&nbsp;<span id="loading" style="display:none"><img src="assets/images/ajax-loader.gif"></span>
+                                    </button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer class="footer">
+        <div class="footer-top">
+            <div class="container">
+                <h4 class="text-center">Contact With Us</h4>
+                <p class="text-center m-0">Please call us at <span class="text-highlight">(301) 234-7161</span> or email us to <a href="mailto:donations@muslimfamilycenter.com" class="text-link">donations@muslimfamilycenter.com</a> with any questions, comments, or concerns.</p>
+            </div>
+
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p class="text-center m-0"><a href="https://muslimfamilycenter.org" class="text-link" target="_blank">Muslim Family Center.</a> All Rights Reserved.</p>
+            </div>
+
+        </div>
+    </footer>
+
+
+    <div class="modal" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false" id="confirm-modal">
+        <div class="modal-dialog modal-dialog-centered modal-confirm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="m-0">Payment Confirmation</h4>
+                </div>
+
+                <div class="modal-body">
+                    <div class="donation-subtitle mb-4">
+                        <h5 class="m-0">Your are about to authorize <strong>$150</strong></h5>
+                    </div>
+                    <h5 class="mb-3">Donation For: <span class="weight-medium">Masjid Operations</span> </h5>
+                    <h5 class="mb-3">Recurring Type: <span class="weight-medium">Masjid Operations</span> </h5>
+                    <h5 class="mb-3">Recurring Duration: <span class="weight-medium">Masjid Operations</span> </h5>
+                </div>
+                <div class="modal-footer">
+                    <div class="btn-holder">
+                        <button type="button" class="btn btn-dark" id="modal-btn-no"><img src="assets/images/cancel_white_40.png" class="img-left">Cancel</button>
+                        <button type="button" class="btn btn-success" id="modal-btn-yes">Yes <img src="assets/images/tick-mark_white_40.png" class="img-right"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"></script>
+<script src="assets/js/jquery.cardcheck.min.js"></script>
+<!-- intl-tel-input -->
+<script src="assets/plugins/intl-tel-input/js/intlTelInput.min.js"></script>
+<!-- PHONE VALIDATOR -->
+<script src="assets/js/phone_validator.js"></script>
+<!-- form validator -->
+<script src="assets/js/form-validation.js"></script>
+
+<script src="assets/js/script.js?v=1.0.1"></script>
+<!--<script src="assets/js/live/script.js?v=1.0.2"></script>-->
+
+<!-- inline script -->
+<script>
+    function submitForm(){
+        console.log('form submitted!');
+    }
+</script>
+
+</body>
+</html>
