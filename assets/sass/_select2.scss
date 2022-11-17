@@ -1,0 +1,57 @@
+$input-height:50px;
+$input-line-height:48px;
+.select2{
+  &-container{
+    &--default{
+      .select2{
+        &-selection{
+          &--single{
+            background: transparent;
+            border-color: #838383;
+            border-radius: 0.25rem;
+            height: $input-height;
+            .select2{
+              &-selection{
+
+                &__arrow{
+                  height: $input-line-height;
+                }
+
+                &__rendered{
+                  line-height: $input-line-height;
+                }
+              }
+            }
+          }
+        }
+
+        &-search{
+          &--dropdown{
+            .select2{
+              &-search{
+                &__field{
+                  padding-left:10px;
+                  padding-right:10px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.select{
+  &-box{
+    position: relative;
+    .ajax-loader{
+      display: none;
+      max-width: 20px;
+      position: absolute;
+      top:50%;
+      right:3px;
+      transform:translateY(-50%);
+    }
+  }
+}

@@ -162,5 +162,5 @@ function notifyError(paramObj) {
     paramObj.formControl.closest('.form-group').find('.check-group').addClass('focused');
     setTimeout(()=>{
         paramObj.formControl.closest('.form-group').find('.check-group').removeClass('focused');
-    },300);
+    },500);
 }

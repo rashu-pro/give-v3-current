@@ -14,6 +14,20 @@
 }
 
 .form{
+
+  &-group{
+    .error-message{
+      display: inline-block;
+      background: #ffdbde;
+      padding: 3px 8px;
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 1;
+      position: relative;
+      top: -2px;
+    }
+  }
+
   &-footer{
     .text-small{
       color:#404a45;
@@ -310,3 +324,24 @@
 
 }
 
+
+.check{
+  &-group{
+    &-wrapper{
+
+    }
+
+    &.focused{
+      outline: 1px solid #e91e63;
+      //padding: 5px;
+      //margin: -5px;
+      transform:scale(1.01);
+      border-radius: 4px;
+      background: #fff4f4;
+      .check-group-wrapper{
+        box-sizing: border-box;
+        padding: 6px;
+      }
+    }
+  }
+}

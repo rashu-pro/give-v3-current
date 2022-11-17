@@ -456,12 +456,14 @@ $(function () {
 
 //=== form validation [client-side]
 let inputFieldSelector = '.form-control';
-let inputFieldRequiredSelector = '.form-group.required-group .form-control';
+let inputFieldRequiredSelector = '.form-group.required-group .input-validation';
+let inputInvalidSelector = '.input-validation.invalid';
 let formGroupSelector = '.form-group';
 let invalidClassName = 'field-invalid';
 let validClassName = 'field-validated';
 let errorMessageClassName = 'error-message';
 let errorMessage = 'this field is required!';
+let donateAmountButtonSelector = '.btn-amount-donate-js';
 
 //=== on submit button click
 $(document).on('click', '#btnCharge', function (e){
@@ -469,8 +471,8 @@ $(document).on('click', '#btnCharge', function (e){
     $(inputFieldRequiredSelector).each(function (i, element){
         singleValidation($(element), $(element).closest(formGroupSelector), invalidClassName, validClassName, errorMessageClassName, errorMessage);
     });
-    if($('.form-control.invalid').length>0) {
-        $('.form-control.invalid').first().focus();
+    if($(inputInvalidSelector).length>0) {
+        $(inputInvalidSelector).first().focus();
         return;
     }
     //=== submit the form
@@ -492,9 +494,108 @@ $(document).on('blur', inputFieldRequiredSelector, function (e){
     singleValidation($(this), $(this).closest(formGroupSelector), invalidClassName, validClassName, errorMessageClassName, errorMessage);
 });
 
-//=== allow only number
+//=== allow only number and -
 $(document).on('keypress', '.input-phone-number', function (e){
-    let self = $(this);
     if(e.which===45) return;
     if(e.which<48 || e.which>58) e.preventDefault();
+});
+
+//=== allow only number
+$(document).on('keypress', '.input-number', function (e){
+    if(e.which<48 || e.which>58) e.preventDefault();
+});
+
+//=== on donateamount button click
+$(document).on('click', '.btn-amount-donate-js', function (e){
+    e.preventDefault();
+    $(donateAmountButtonSelector).removeClass('active');
+    $(this).addClass('active');
+    $('#txtAmount').val($(this).data('value'));
+    $(this).closest(formGroupSelector).find('.'+errorMessageClassName).remove();
+});
+
+$(document).on('keyup', '#other-amount', function (e){
+    e.preventDefault();
+    let self = $(this);
+    if(self.val()>0) $(donateAmountButtonSelector).removeClass('active');
+    $('#txtAmount').val(self.val());
+    $(this).closest(formGroupSelector).find('.'+errorMessageClassName).remove();
+});
+
+//=== select 2 initialization
+if($('.select2').length>0){
+    $('.select2').select2();
+}
+
+//=== country/state/city api
+let authToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJfZW1haWwiOiJyYXNodS5za2lmZnRlY2hAZ21haWwuY29tIiwiYXBpX3Rva2VuIjoiSkszT3NJSm85ZG05S0Y5eDNYUGM1emQwd2NXQVZrTmNhYXBZNm45T29UclhPNU9nanZUMjVuVTNRSUQtcWxDcGIwbyJ9LCJleHAiOjE2Njg3NjYzNzJ9.c-eN8CwrR_U8YkFWJd3hFX5iRxquWKbnb7PXmicj-yA";
+//authToken expiry time 24 hrs
+//have to generate auth token every 24 hrs
+let tokenCreatedAt = Date.now();
+const optionsReqHeader = {
+    method: 'GET',
+    headers: {
+        "Accept": "application/json",
+        "api-token": "JK3OsIJo9dm9KF9x3XPc5zd0wcWAVkNcaapY6n9OoTrXO5OgjvT25nU3QID-qlCpb0o",
+        "user-email": "rashu.skifftech@gmail.com"
+    }
+}
+
+//generates auth token
+if(!authToken){
+    console.log('token expired, new token is being created...');
+    fetch('https://www.universal-tutorial.com/api/getaccesstoken', optionsReqHeader)
+        .then(response => response.json())
+        .then(response =>{
+            console.log('access token: ', response);
+        })
+        .catch(err => console.log.error(err));
+}
+
+const optionsReqHeaderGetData = {
+    method: 'GET',
+    headers: {
+        "Authorization": "Bearer "+authToken,
+        "Accept": "application/json"
+    }
+}
+
+//request to get all the states for United States
+let country = 'United States';
+fetch('https://www.universal-tutorial.com/api/states/'+country, optionsReqHeaderGetData)
+    .then(response => response.json())
+    .then(response =>{
+        let counter = 0;
+        for (let obj in response) {
+            var newOption = new Option(response[counter].state_name, response[counter].state_name, false, false);
+            $('#selector-state').append(newOption);
+            counter++;
+        }
+    })
+    .catch(err => console.error(err));
+
+$(document).on('change', '#selector-state', function (){
+    let self = $(this);
+    let selectedState = this.value;
+    let selectorCity = self.data('city-selector');
+    selectedState = selectedState.replace(/\s/g, "");
+    let state = 'Alaska';
+    let url = `https://www.universal-tutorial.com/api/cities/${selectedState}`;
+    $('#selector-city').closest('.select-box').find('.ajax-loader').show();
+    console.log('url: ', url);
+    // fetch('https://www.universal-tutorial.com/api/cities/Alaska', optionsReqHeaderGetData)
+    fetch(url, optionsReqHeaderGetData)
+        .then(response => response.json())
+        .then(response =>{
+            $('#selector-city').empty();
+            $('#selector-city').append("<option value=''>Select City</option>");
+            let counter = 0;
+            for (let obj in response) {
+                var newOption = new Option(response[counter].city_name, response[counter].city_name, false, false);
+                $('#selector-city').append(newOption);
+                counter++;
+            }
+            $('#selector-city').closest('.select-box').find('.ajax-loader').hide();
+        })
+        .catch(err => console.error(err));
 });

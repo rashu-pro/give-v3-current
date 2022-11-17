@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Give to - Muslim Family Center</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+    <!-- select 2 -->
+    <link rel="stylesheet" href="node_modules/select2/dist/css/select2.min.css">
     <!-- intl-tel-input -->
     <link rel="stylesheet" href="assets/plugins/intl-tel-input/css/intlTelInput.min.css">
     <link rel="stylesheet" href="assets/css/style.css?v=1.0.1">
@@ -47,8 +49,8 @@
                             <!--TAB HEAD====================-->
                             <div class="tabbed-head">
                                 <ul class="nav">
-                                    <li class="nav-tabbed active"><a href="donate_form_tabbed-validation.html"><span class="tab-image"><img src="assets/images/credit_card_white_bg.jpg" alt="credit card"></span> </a> </li>
-                                    <li class="nav-tabbed"><a href="donate_form_tabbed-2-validation.html"> <span class="tab-image"><img src="assets/images/ach_resized.jpg" alt="ach"></span> </a> </li>
+                                    <li class="nav-tabbed"><a href="donate_form_tabbed-validation.html"><span class="tab-image"><img src="assets/images/credit_card_white_bg.jpg" alt="credit card"></span> </a> </li>
+                                    <li class="nav-tabbed active"><a href="donate_form_tabbed-2-validation.html"> <span class="tab-image"><img src="assets/images/ach_resized.jpg" alt="ach"></span> </a> </li>
                                 </ul>
                             </div>
 
@@ -171,19 +173,20 @@
                                             <div class="row small-gutters">
                                                 <div class="col-sm-6">
                                                     <div class="form-group required-group">
-                                                        <label for="name" class="field-label required-sign"><span class="text-warning">*</span> <span class="lable-text">Name on Card</span></label>
-                                                        <input id="name" type="text" class="form-control field-normal input-validation validation-text" data-min-length="6" name="Mr. Raihan">
+                                                        <div class="position-relative">
+                                                            <label for="name" class="field-label required-sign"><span class="text-warning">*</span> <span class="lable-text">Name on Card</span></label>
+                                                            <input id="name" type="text" class="form-control field-normal input-validation validation-text" data-min-length="6" name="Mr. Raihan">
+                                                        </div>
+
                                                     </div>
 
                                                 </div>
                                                 <div class="col-sm-6">
-                                                    <div class="form-group required-group">
-                                                        <div class="phone-number-validator-wrapper required-group">
-                                                            <div class="position-relative">
-                                                                <label for="phone-number" class="field-label required-sign"><span class="text-warning">*</span> <span class="lable-text">Phone Number</span></label>
-                                                                <input id="phone-number" type="text" class="form-control phone-number-validator input-phone-number field-normal">
-                                                                <input type="hidden" class="phone-number-hidden" name="PhoneNumber">
-                                                            </div>
+                                                    <div class="form-group phone-number-validator-wrapper required-group">
+                                                        <div class="position-relative">
+                                                            <label for="phone-number" class="field-label required-sign"><span class="text-warning">*</span> <span class="lable-text">Phone Number</span></label>
+                                                            <input id="phone-number" type="text" class="form-control phone-number-validator input-validation input-phone-number field-normal">
+                                                            <input type="hidden" class="phone-number-hidden" name="PhoneNumber">
                                                         </div>
                                                     </div>
 
@@ -243,26 +246,29 @@
                                         <div class="">
                                             <div class="row small-gutters">
                                                 <div class="col-sm-4">
-                                                    <div class="form-group">
-                                                        <label for="state" class="mb-1">State</label>
-                                                        <select id="state" class="form-control field-normal">
-                                                            <option>Select State</option>
-                                                            <option>Alabama</option>
-                                                            <option>Georgia</option>
-                                                            <option>Washinton</option>
-                                                        </select>
+                                                    <div class="form-group required-group">
+                                                        <div class="position-relative">
+                                                            <label for="selector-state" class="mb-1">State</label>
+                                                            <select id="selector-state" data-city-selctor="#selector-city" class="form-control field-normal input-validation select2">
+                                                                <option value="">Select State</option>
+                                                            </select>
+                                                        </div>
+
                                                     </div>
                                                 </div>
 
                                                 <div class="col-sm-4">
-                                                    <div class="form-group">
-                                                        <label for="city" class="mb-1">City</label>
-                                                        <select id="city" class="form-control field-normal">
-                                                            <option>Select State</option>
-                                                            <option>Alabama</option>
-                                                            <option>Georgia</option>
-                                                            <option>Washinton</option>
-                                                        </select>
+                                                    <div class="form-group required-group">
+                                                        <div class="position-relative">
+                                                            <label for="selector-city" class="mb-1">City</label>
+                                                            <div class="select-box">
+                                                                <select id="selector-city" class="form-control input-validation select2 field-normal">
+                                                                    <option>Select City</option>
+                                                                </select>
+                                                                <img src="assets/images/Iphone-spinner-2.gif" class="ajax-loader" alt="loading">
+                                                            </div>
+
+                                                        </div>
                                                     </div>
                                                 </div>
 
@@ -371,7 +377,8 @@
 <script src="assets/js/phone_validator.js"></script>
 <!-- form validator -->
 <script src="assets/js/form-validation.js"></script>
-
+<!-- select 2 -->
+<script src="node_modules/select2/dist/js/select2.min.js"></script>
 <script src="assets/js/script.js?v=1.0.1"></script>
 <!--<script src="assets/js/live/script.js?v=1.0.2"></script>-->
 

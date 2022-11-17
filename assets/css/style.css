@@ -66,6 +66,16 @@
   top: 1px;
 }
 
+.form-group .error-message {
+  display: inline-block;
+  background: #ffdbde;
+  padding: 3px 8px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1;
+  position: relative;
+  top: -2px;
+}
 .form-footer .text-small {
   color: #404a45;
 }
@@ -297,6 +307,46 @@
 }
 .card-images .card_icon.discover .american-express:after {
   background-color: rgba(131, 131, 131, 0.62);
+}
+
+.check-group.focused {
+  outline: 1px solid #e91e63;
+  transform: scale(1.01);
+  border-radius: 4px;
+  background: #fff4f4;
+}
+.check-group.focused .check-group-wrapper {
+  box-sizing: border-box;
+  padding: 6px;
+}
+
+.select2-container--default .select2-selection--single {
+  background: transparent;
+  border-color: #838383;
+  border-radius: 0.25rem;
+  height: 50px;
+}
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+  height: 48px;
+}
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+  line-height: 48px;
+}
+.select2-container--default .select2-search--dropdown .select2-search__field {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.select-box {
+  position: relative;
+}
+.select-box .ajax-loader {
+  display: none;
+  max-width: 20px;
+  position: absolute;
+  top: 50%;
+  right: 3px;
+  transform: translateY(-50%);
 }
 
 .button-cover, .knobs, .layer {

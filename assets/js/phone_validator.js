@@ -150,7 +150,7 @@ function errorHandling(iti, phoneNumber, phoneNumberWrapperSelectorName, alertMe
         alertTag.append(statusMessage);
         phoneNumber.classList.add(isvalidClass);
         if(isFormGroupValid!=='') phoneNumber.parentElement.parentElement.classList.add(isFormGroupValid);
-        // phoneNumber.closest(phoneNumberWrapperSelectorName).append(alertTag);
+        phoneNumber.closest(phoneNumberWrapperSelectorName).append(alertTag);
     }
 
     hiddenField.value = number;

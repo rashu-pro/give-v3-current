@@ -1,0 +1,28 @@
+{
+  "name": "give-v3",
+  "version": "1.0.0",
+  "description": "Introduction - Give v3 (HTML Template) ======================================",
+  "main": "index.js",
+  "scripts": {
+    "compile:sass": "sass assets/sass:assets/css -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rashu-pro/give-v3-current.git"
+  },
+  "keywords": [
+    "donation",
+    "form",
+    "donation",
+    "UI"
+  ],
+  "author": "rashu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rashu-pro/give-v3-current/issues"
+  },
+  "homepage": "https://github.com/rashu-pro/give-v3-current#readme",
+  "dependencies": {
+    "select2": "^4.1.0-rc.0"
+  }
+}
