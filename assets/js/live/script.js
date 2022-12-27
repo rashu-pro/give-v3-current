@@ -4,77 +4,93 @@
 
 $(function (event) {
 
-    $(document).ready(function () {
-        var type = getUrlParameter('recurringType');
-        var recurringDuration = getUrlParameter('recurringDuration');
-        if (type == "MONTHLY" || type == "Monthly") {
-            $('#IsRecurringGive').val(true);
-            $('#IsRecurringGive').attr('checked', true);
-            $('.checkbox-recurring').trigger('change');
-            $('.recurring-period').slideDown('slow');
-        }
+    var type = getUrlParameter('recurringType');
+    var recurringDuration = getUrlParameter('recurringDuration');
 
-        if (type == "DAILY" || type == "Daily") {
-            $('#IsRecurringGive').val(true);
-            $('#IsRecurringGive').attr('checked', true);
-            $('.checkbox-recurring').trigger('change');
-            $('.recurring-period').slideDown('slow');
-            $('.recurring-duration').show();
-        }
 
-        if (type == "WEEKLY" || type == "Weekly") {
-            $('#IsRecurringGive').val(true);
-            $('#IsRecurringGive').attr('checked', true);
-            $('.checkbox-recurring').trigger('change');
-            $('.recurring-period').slideDown('slow');
-            $('.recurring-duration').show();
-        }
+    if (type == "MONTHLY" || type == "monthly") {
+        $('#IsRecurringGive').val(true);
+        $('#IsRecurringGive').attr('checked', true);
+        $('.checkbox-recurring').trigger('change');
+       // $('.checkbox-recurring').trigger('click');
+        $('.recurring-period').slideDown('slow');
+        $('.recurring-type').val('month');
+    }
 
-        if (recurringDuration > 0) {
-            $('.recurring-duration').show();
-        }
+    if (type == "DAILY" || type == "daily") {
+        $('#IsRecurringGive').val(true);
+        $('#IsRecurringGive').attr('checked', true);
+        $('.checkbox-recurring').trigger('change');
+       // $('.checkbox-recurring').trigger('click');
+        $('.recurring-period').slideDown('slow');
+        $('.recurring-period').show();
+        $('.recurring-type').val(type);
+        $('.recurring-type').val('day');
 
-        var amount = getUrlParameter('amount');
-        var amountAsInt = parseInt(amount);
-        var isAmountBtnActive = false;
-        if (amountAsInt > 0) {
-            $('.donateButton').each(function (i) {
-                var item = $(this);
-                var donateAmount = parseInt(item.attr("data-value"));
-                if (donateAmount == amountAsInt) {
-                    item.addClass("active");
-                    console.log('in if');
-                    $('.donateButton').not(this).removeClass("active");
-                    $('#other-amount').val('');
-                    $('#txtAmount').val(donateAmount);
-                    loadDonateAmount();
-                    isAmountBtnActive = true;
-                }
-            });
-        }
+    }
 
-        if (amountAsInt > 0 && !isAmountBtnActive) {
+    if (type == "WEEKLY" || type == "weekly") {
+
+        $('#IsRecurringGive').val(true);
+        $('#IsRecurringGive').attr('checked', true);
+        $('.checkbox-recurring').trigger('change');
+       // $('.checkbox-recurring').trigger('click');
+        $('.recurring-period').slideDown('slow');
+        $('.recurring-period').show();
+        $('.recurring-type').val('week');
+
+    }
+
+    if (recurringDuration > 0) {
+        $('.recurring-duration').show();
+    }
+
+    var amount = getUrlParameter('amount');
+    var amountAsInt = parseInt(amount);
+    var isAmountBtnActive = false;
+    if (amountAsInt > 0) {
+        $('.donateButton').each(function (i) {
+            var item = $(this);
+            var donateAmount = parseInt(item.attr("data-value"));
+            if (donateAmount == amountAsInt) {
+                item.addClass("active");
+                $('.donateButton').not(this).removeClass("active");
+                $('#other-amount').val('');
+                $('#txtAmount').val(donateAmount);
+                loadDonateAmount();
+                isAmountBtnActive = true;
+            }
+        });
+    }
+
+    if (amountAsInt > 0 && !isAmountBtnActive) {
+        if($('.donation-wrapper').hasClass('mfc')){
+            $('.donateButton').first().find('.amount-number').html(amount);
+            $('.donateButton').first().attr('data-value', amount);
+            $('.donateButton').first().addClass('active');
+        }else{
             $('#other-amount').trigger('focus');
             $('#other-amount').prev().addClass('focused');
             $('#other-amount').val(amount);
-            $('#txtAmount').val(amount);
-            loadDonateAmount();
         }
+        $('#txtAmount').val(amount);
+        $('#txtAmount').attr('data-solid', amount);
+        loadDonateAmount();
+    }
 
-        var product = getUrlParameter('product');
-        if (product != '') {
-            $('#PaymentDescription').val(product).change();
-        }
-    });
+    var product = getUrlParameter('product');
+    if (product != '') {
+        $('#PaymentDescription').val(product).change();
+    }
 
     if ($('.form-control').length > 0) {
         var self = $('.form-control');
-        $('.form-control').each(function (i, element) {
-            if($(element).val()){
-                $(element).closest('.form-group').find('.field-label').addClass('focused');
-            }
-        });
-
+        if (self.val() == '') {
+            self.prev().removeClass('focused');
+        }
+        else {
+            self.prev().addClass('focused');
+        }
         $('.form-control').on('focus', function () {
             var self = $(this);
             self.prev().addClass('focused');
@@ -399,7 +415,7 @@ $(function (event) {
     }
 
     //for getting queryParam    
-    var getUrlParameter = function getUrlParameter(sParam) {
+    function getUrlParameter(sParam) {
         var sPageURL = window.location.search.substring(1),
             sURLVariables = sPageURL.split('&'),
             sParameterName,
