@@ -1,4 +1,13 @@
 $color_primary:#40046c;
+$color_primary: #009688;
 $color_primary_light: #cbc4da;
+$color_primary_light: #d5fcf7;
 $color_primary_dark:#100a15;
 $text_black:#202020;
+
+.main-wrapper{
+  &.v2{
+    $color_primary: #009688;
+    $color_primary_light: #d5fcf7;
+  }
+}

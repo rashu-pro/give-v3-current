@@ -1,0 +1,156 @@
+.main{
+  &-wrapper{
+    &.v2{
+
+      .field{
+        &-group{
+          box-shadow: 0 2px 4px #00000014;
+          border: 1px solid #f2f2f2;
+        }
+
+        &-label{
+          --tw-bg-opacity: 1;
+          background-color: rgb(249 250 251/var(--tw-bg-opacity));
+        }
+      }
+
+      .form{
+        &-control{
+          --tw-border-opacity: 1;
+          border-color: rgb(209 213 219/var(--tw-border-opacity));
+          --tw-bg-opacity: 1;
+          background-color: rgb(249 250 251/var(--tw-bg-opacity));
+          border-radius: 0.5rem;
+          &:focus{
+            background-color: #fff;
+            border-color:#202020;
+          }
+        }
+      }
+
+      .donation-body{
+        padding-top:0;
+        .field-group:first-child{
+          margin-top:25px;
+        }
+      }
+
+      .btn{
+        &-amount{
+          &-box{
+            //box-shadow: 0px 4px 4px 0px $color_primary;
+            box-shadow: none;
+            border: 1px solid $color_primary;
+            margin-bottom: 15px;
+            border-radius: 0.5rem;
+            padding:12px 0;
+            @media (min-width: 768px){
+              padding:18px 0;
+            }
+          }
+        }
+      }
+
+      .tabbed{
+        &-head{
+          .nav-tabbed{
+            a{
+              &:after{
+                top:unset;
+                bottom:0;
+                background-color: $color_primary;
+              }
+            }
+
+            &.active{
+              a{
+                background-color: $color_primary_light;
+              }
+            }
+          }
+        }
+      }
+
+      .footer{
+        &-top{
+          background-color: #e3e3e3;
+          color:#202020;
+          .text-link{
+            color:#2196f3;
+            font-weight: 500;
+          }
+        }
+      }
+
+      @media (min-width: 768px){
+        .tabbed{
+          &-content{
+            padding:30px 60px;
+          }
+        }
+
+        .field{
+          &-group{
+            margin-top:70px;
+            padding:30px 40px;
+          }
+        }
+      }
+
+      .other-amount{
+        .form-control{
+          font-size: 22px;
+          font-weight: 600;
+        }
+
+        .field-label{
+          font-size: 24px;
+          font-weight: 500;
+        }
+      }
+
+      .field{
+        &-group{
+          .form{
+            &-group{
+              &:last-child{
+                //margin-bottom: 0;
+              }
+            }
+          }
+        }
+      }
+
+      .card{
+        &-images{
+          span{
+            img{
+              border:1px solid #ddd;
+            }
+            &:after{
+              background-color: transparent;
+            }
+          }
+        }
+      }
+
+      .select2-container--default .select2-selection--single{
+        --tw-border-opacity: 1;
+        border-color: rgb(209 213 219/var(--tw-border-opacity));
+        --tw-bg-opacity: 1;
+        background-color: rgb(249 250 251/var(--tw-bg-opacity));
+        border-radius: 0.5rem;
+      }
+
+      .select2-container--open.select2-container--default .select2-selection--single{
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+        border-color:#ddd;
+      }
+
+      .select2-container .select2-selection--single .select2-selection__rendered{
+        padding-left:15px;
+      }
+    }
+  }
+}

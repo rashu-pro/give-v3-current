@@ -441,7 +441,6 @@ $(function () {
     });
 
     //======= EMAIL VALIDATION
-    //======= EMAIL VALIDATION
     function validateMail(formGroup) {
         let pattern = /^\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b$/i,
             email = formGroup.find('.form-control').val();
@@ -508,19 +507,31 @@ $(document).on('keypress', '.input-number', function (e){
 //=== on donateamount button click
 $(document).on('click', '.btn-amount-donate-js', function (e){
     e.preventDefault();
+    let self = $(this);
     $(donateAmountButtonSelector).removeClass('active');
-    $(this).addClass('active');
+    self.addClass('active');
+    $('#other-amount').val('');
     $('#txtAmount').val($(this).data('value'));
-    $(this).closest(formGroupSelector).find('.'+errorMessageClassName).remove();
+
+    if(!self.closest('.form-group').hasClass('required-group')) return;
+    donateAmountValidation(self);
 });
 
-$(document).on('keyup', '#other-amount', function (e){
-    e.preventDefault();
+$(document).on('keyup change', '#other-amount', function (){
     let self = $(this);
-    if(self.val()>0) $(donateAmountButtonSelector).removeClass('active');
+    if(self.val()<=0) return;
+    $(donateAmountButtonSelector).removeClass('active');
     $('#txtAmount').val(self.val());
-    $(this).closest(formGroupSelector).find('.'+errorMessageClassName).remove();
+
+    if(!self.closest('.form-group').hasClass('required-group')) return;
+    donateAmountValidation(self);
 });
+
+function donateAmountValidation(self){
+    self.closest('.form-group').find('.input-validation').removeClass('invalid');
+    self.closest('.form-group').find('.input-validation').removeClass('field-invalid');
+    self.closest(formGroupSelector).find('.'+errorMessageClassName).remove();
+}
 
 //=== select 2 initialization
 if($('.select2').length>0){
@@ -540,6 +551,8 @@ const optionsReqHeader = {
         "user-email": "rashu.skifftech@gmail.com"
     }
 }
+console.log('auth token', authToken);
+authToken = false;
 
 //generates auth token
 if(!authToken){
@@ -548,54 +561,64 @@ if(!authToken){
         .then(response => response.json())
         .then(response =>{
             console.log('access token: ', response);
+            authToken = response.auth_token;
+            const optionsReqHeaderGetData = {
+                method: 'GET',
+                headers: {
+                    "Authorization": "Bearer "+response.auth_token,
+                    "Accept": "application/json"
+                }
+            }
+
+            //request to get all the states for United States
+            let country = 'United States';
+            fetch('https://www.universal-tutorial.com/api/states/'+country, optionsReqHeaderGetData)
+              .then(response => response.json())
+              .then(response =>{
+                  let counter = 0;
+                  for (let obj in response) {
+                      var newOption = new Option(response[counter].state_name, response[counter].state_name, false, false);
+                      $('#selector-state').append(newOption);
+                      counter++;
+                  }
+                  $('#selector-state').closest('.select-box').find('.ajax-loader').hide();
+              })
+              .catch(err => console.error(err));
         })
         .catch(err => console.log.error(err));
 }
 
-const optionsReqHeaderGetData = {
-    method: 'GET',
-    headers: {
-        "Authorization": "Bearer "+authToken,
-        "Accept": "application/json"
-    }
-}
-
-//request to get all the states for United States
-let country = 'United States';
-fetch('https://www.universal-tutorial.com/api/states/'+country, optionsReqHeaderGetData)
-    .then(response => response.json())
-    .then(response =>{
-        let counter = 0;
-        for (let obj in response) {
-            var newOption = new Option(response[counter].state_name, response[counter].state_name, false, false);
-            $('#selector-state').append(newOption);
-            counter++;
-        }
-    })
-    .catch(err => console.error(err));
-
 $(document).on('change', '#selector-state', function (){
-    let self = $(this);
     let selectedState = this.value;
-    let selectorCity = self.data('city-selector');
     selectedState = selectedState.replace(/\s/g, "");
-    let state = 'Alaska';
     let url = `https://www.universal-tutorial.com/api/cities/${selectedState}`;
     $('#selector-city').closest('.select-box').find('.ajax-loader').show();
-    console.log('url: ', url);
-    // fetch('https://www.universal-tutorial.com/api/cities/Alaska', optionsReqHeaderGetData)
-    fetch(url, optionsReqHeaderGetData)
-        .then(response => response.json())
-        .then(response =>{
-            $('#selector-city').empty();
-            $('#selector-city').append("<option value=''>Select City</option>");
-            let counter = 0;
-            for (let obj in response) {
-                var newOption = new Option(response[counter].city_name, response[counter].city_name, false, false);
-                $('#selector-city').append(newOption);
-                counter++;
-            }
-            $('#selector-city').closest('.select-box').find('.ajax-loader').hide();
-        })
-        .catch(err => console.error(err));
+
+    fetch('https://www.universal-tutorial.com/api/getaccesstoken', optionsReqHeader)
+      .then(response => response.json())
+      .then(response =>{
+          const optionsReqHeaderGetData = {
+              method: 'GET',
+              headers: {
+                  "Authorization": "Bearer "+response.auth_token,
+                  "Accept": "application/json"
+              }
+          }
+
+          fetch(url, optionsReqHeaderGetData)
+            .then(response => response.json())
+            .then(response =>{
+                $('#selector-city').empty();
+                $('#selector-city').append("<option value=''>Select City</option>");
+                let counter = 0;
+                for (let obj in response) {
+                    var newOption = new Option(response[counter].city_name, response[counter].city_name, false, false);
+                    $('#selector-city').append(newOption);
+                    counter++;
+                }
+                $('#selector-city').closest('.select-box').find('.ajax-loader').hide();
+            })
+            .catch(err => console.error(err));
+      })
+      .catch(err => console.log.error(err));
 });

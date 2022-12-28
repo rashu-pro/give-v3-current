@@ -14,20 +14,20 @@
   font-weight: 600;
   padding: 18px 0;
   box-shadow: 0px 0px 2px #21252936;
-  color: #40046c;
-  border: 1px solid #40046c;
+  color: #009688;
+  border: 1px solid #009688;
   margin-bottom: 10px;
 }
 .btn-amount-box:hover {
-  background-color: #cbc4da;
-  color: #40046c;
+  background-color: #d5fcf7;
+  color: #009688;
 }
 .btn-amount-box.active {
-  background-color: #40046c;
+  background-color: #009688;
   color: #fff;
 }
 .btn-fill {
-  background-color: #40046c;
+  background-color: #009688;
   color: #fff;
   font-size: 1rem;
   line-height: 1.5;
@@ -103,7 +103,7 @@
   width: 0;
 }
 .form-check .check-container input:checked ~ .checkmark {
-  background-color: #40046c;
+  background-color: #009688;
 }
 .form-check .check-container input:checked ~ .checkmark:after {
   display: block;
@@ -115,7 +115,7 @@
   height: 24px;
   width: 24px;
   /* background-color: #eee; */
-  border: 2px solid #40046c;
+  border: 2px solid #009688;
   border-radius: 0.2rem;
 }
 .form-check .check-container .checkmark:after {
@@ -134,7 +134,7 @@
   transform: rotate(41deg);
 }
 .form-check .check-container .checkmark:hover {
-  background-color: #cbc4da;
+  background-color: #d5fcf7;
 }
 .card-images {
   padding-top: 10px;
@@ -621,7 +621,7 @@ header {
 .field-group {
   position: relative;
   padding: 15px;
-  border: 1px solid #40046c;
+  border: 1px solid #009688;
   border-radius: 4px;
   padding-top: 40px;
   margin-top: 50px;
@@ -631,7 +631,7 @@ header {
   top: -16px;
   background: #fff;
   padding: 0 15px 0 10px;
-  color: #40046c;
+  color: #009688;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -752,7 +752,7 @@ header {
 }
 
 .footer {
-  background-color: #190d23;
+  background-color: #424242;
 }
 .footer-top {
   color: #fff;
@@ -1215,6 +1215,98 @@ header {
 }
 .form-control.field-invalid {
   border-color: #dc3545;
+}
+
+.main-wrapper.v2 .field-group {
+  box-shadow: 0 2px 4px #00000014;
+  border: 1px solid #f2f2f2;
+}
+.main-wrapper.v2 .field-label {
+  --tw-bg-opacity: 1;
+  background-color: rgb(249 250 251/var(--tw-bg-opacity));
+}
+.main-wrapper.v2 .form-control {
+  --tw-border-opacity: 1;
+  border-color: rgb(209 213 219/var(--tw-border-opacity));
+  --tw-bg-opacity: 1;
+  background-color: rgb(249 250 251/var(--tw-bg-opacity));
+  border-radius: 0.5rem;
+}
+.main-wrapper.v2 .form-control:focus {
+  background-color: #fff;
+  border-color: #202020;
+}
+.main-wrapper.v2 .donation-body {
+  padding-top: 0;
+}
+.main-wrapper.v2 .donation-body .field-group:first-child {
+  margin-top: 25px;
+}
+.main-wrapper.v2 .btn-amount-box {
+  box-shadow: none;
+  border: 1px solid #009688;
+  margin-bottom: 15px;
+  border-radius: 0.5rem;
+  padding: 12px 0;
+}
+@media (min-width: 768px) {
+  .main-wrapper.v2 .btn-amount-box {
+    padding: 18px 0;
+  }
+}
+.main-wrapper.v2 .tabbed-head .nav-tabbed a:after {
+  top: unset;
+  bottom: 0;
+  background-color: #009688;
+}
+.main-wrapper.v2 .tabbed-head .nav-tabbed.active a {
+  background-color: #d5fcf7;
+}
+.main-wrapper.v2 .footer-top {
+  background-color: #e3e3e3;
+  color: #202020;
+}
+.main-wrapper.v2 .footer-top .text-link {
+  color: #2196f3;
+  font-weight: 500;
+}
+@media (min-width: 768px) {
+  .main-wrapper.v2 .tabbed-content {
+    padding: 30px 60px;
+  }
+  .main-wrapper.v2 .field-group {
+    margin-top: 70px;
+    padding: 30px 40px;
+  }
+}
+.main-wrapper.v2 .other-amount .form-control {
+  font-size: 22px;
+  font-weight: 600;
+}
+.main-wrapper.v2 .other-amount .field-label {
+  font-size: 24px;
+  font-weight: 500;
+}
+.main-wrapper.v2 .card-images span img {
+  border: 1px solid #ddd;
+}
+.main-wrapper.v2 .card-images span:after {
+  background-color: transparent;
+}
+.main-wrapper.v2 .select2-container--default .select2-selection--single {
+  --tw-border-opacity: 1;
+  border-color: rgb(209 213 219/var(--tw-border-opacity));
+  --tw-bg-opacity: 1;
+  background-color: rgb(249 250 251/var(--tw-bg-opacity));
+  border-radius: 0.5rem;
+}
+.main-wrapper.v2 .select2-container--open.select2-container--default .select2-selection--single {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  border-color: #ddd;
+}
+.main-wrapper.v2 .select2-container .select2-selection--single .select2-selection__rendered {
+  padding-left: 15px;
 }
 
 .loader-div {

@@ -130,8 +130,8 @@ function errorHandling(iti, phoneNumber, phoneNumberWrapperSelectorName, alertMe
     }
 
     if(isValid && error === intlTelInputUtils.validationError.IS_POSSIBLE){
-        showErrorMessage = 1;
-        // statusMessage = "Number is valid!";
+        showErrorMessage = 0;
+        statusMessage = "Number is valid!";
         alertClass = 'text-success';
         isvalidClass = 'valid';
         isFormGroupValid = 'field-validated';
