@@ -16,4 +16,4 @@ Introduction - Give v3 (HTML Template)
 
 **Screenshot**
 
-![image](https://github.com/rashu-pro/give-v3/blob/master/screenshot.png)
+![image](https://github.com/rashu-pro/give-v3/blob/master/screenshot-ui-improved.jpg)
