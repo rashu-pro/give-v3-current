@@ -25,7 +25,7 @@ function singleValidation(formControl, formGroup, invalidClassName, validClassNa
     //=== IF FORM GROUP HAS DISPLAY NONE PROPERTIES
     if(formGroup.css('display')==='none') return;
 
-    if(formControl.val()==='' && formControl.attr('type')==='hidden'){
+    if((formControl.val()===''||parseInt(formControl.val())===0) && formControl.attr('type')==='hidden'){
         validationFailed(paramObj);
         $(document).scrollTop(formGroup.offset().top-250);
     }

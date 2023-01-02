@@ -508,20 +508,21 @@ $(document).on('keypress', '.input-number', function (e){
 $(document).on('click', '.btn-amount-donate-js', function (e){
     e.preventDefault();
     let self = $(this);
+    let donateAmount = self.attr('data-value');
     $(donateAmountButtonSelector).removeClass('active');
     self.addClass('active');
     $('#other-amount').val('');
-    $('#txtAmount').val($(this).data('value'));
+    $('#txtAmount').val(donateAmount);
+    $('#txtAmount').attr('data-solid', donateAmount);
 
     if(!self.closest('.form-group').hasClass('required-group')) return;
     donateAmountValidation(self);
 });
 
-$(document).on('keyup change', '#other-amount', function (){
+$(document).on('keyup change focus', '#other-amount', function (){
     let self = $(this);
     if(self.val()<=0) return;
     $(donateAmountButtonSelector).removeClass('active');
-    $('#txtAmount').val(self.val());
 
     if(!self.closest('.form-group').hasClass('required-group')) return;
     donateAmountValidation(self);
