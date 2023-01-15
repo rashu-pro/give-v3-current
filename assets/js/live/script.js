@@ -386,6 +386,7 @@ $(function (event) {
         $('#txtAmount').val('0');
 
         setOtherAmountValue();
+
         loadDonateAmount();
     });
 
@@ -428,5 +429,103 @@ $(function (event) {
             }
         }
         return false;
-    };
+    }
+
+    //country and state filler
+    //==== USA STATE FILLER
+    let countryField = $('.selector-country'),
+      stateFieldGroup = $('.state-field-group'),
+      statesJson = {
+          "Alabama": "Alabama",
+          "Alaska": "Alaska",
+          "Arizona": "Arizona",
+          "Arkansas": "Arkansas",
+          "California": "California",
+          "Colorado": "Colorado",
+          "Connecticut": "Connecticut",
+          "Delaware": "Delaware",
+          "Florida": "Florida",
+          "Georgia": "Georgia",
+          "Hawaii": "Hawaii",
+          "Idaho": "Idaho",
+          "Illinois": "Illinois",
+          "Indiana": "Indiana",
+          "Iowa": "Iowa",
+          "Kansas": "Kansas",
+          "Kentucky": "Kentucky",
+          "Louisiana": "Louisiana",
+          "Maine": "Maine",
+          "Maryland": "Maryland",
+          "Massachusetts": "Massachusetts",
+          "Michigan": "Michigan",
+          "Minnesota": "Minnesota",
+          "Mississippi": "Mississippi",
+          "Missouri": "Missouri",
+          "Montana": "Montana",
+          "Nebraska": "Nebraska",
+          "Nevada": "Nevada",
+          "NewHampshire": "NewHampshire",
+          "NewJersey": "NewJersey",
+          "NewMexico": "NewMexico",
+          "NewYork": "NewYork",
+          "NorthCarolina": "NorthCarolina",
+          "NorthDakota": "NorthDakota",
+          "Ohio": "Ohio",
+          "Oklahoma": "Oklahoma",
+          "Oregon": "Oregon",
+          "Pennsylvania": "Pennsylvania",
+          "RhodeIsland": "RhodeIsland",
+          "SouthCarolina": "SouthCarolina",
+          "SouthDakota": "SouthDakota",
+          "Tennessee": "Tennessee",
+          "Texas": "Texas",
+          "Utah": "Utah",
+          "Vermont": "Vermont",
+          "Virginia": "Virginia",
+          "Washington": "Washington",
+          "WestVirginia": "WestVirginia",
+          "Wisconsin": "Wisconsin",
+          "Wyoming": "Wyoming",
+          "zUnknown": "zUnknown"
+      },
+      statesCanadaJson = {
+          "Alberta": "Alberta",
+          "British Columbia": "British Columbia",
+          "Manitoba": "Manitoba",
+          "New Brunswick": "New Brunswick",
+          "Newfoundland and Labrador": "Newfoundland and Labrador",
+          "Northwest Territories": "Northwest Territories",
+          "Nova Scotia": "Nova Scotia",
+          "Nunavut": "Nunavut",
+          "Ontario": "Ontario",
+          "Prince Edward Island": "Prince Edward Island",
+          "Quebec": "Quebec",
+          "Saskatchewan": "Saskatchewan",
+          "Yukon": "Yukon"
+      };
+
+    statesFiller(countryField);
+
+    countryField.on('change', function () {
+        let self = $(this);
+        statesFiller(self);
+    });
+
+    function statesFiller(countryFieldSelector) {
+        if (countryFieldSelector.val() == "usa") {
+            countryFieldSelector.closest('.field-group').find('.state-field-group .state-holder').html("<select class='form-control field-normal state' name='State' id='state'></select>");
+            countryFieldSelector.closest('.field-group').find('.state-field-group').find('select').append("<option value='0'>Select a State</option>");
+            for (let key in statesJson) {
+                countryFieldSelector.closest('.field-group').find('.state-field-group').find('select').append("<option value='" + statesJson[key] + "'>" + statesJson[key] + "</option>")
+            }
+        } else if (countryFieldSelector.val() == "canada") {
+            countryFieldSelector.closest('.field-group').find('.state-field-group .state-holder').html("<select class='form-control field-normal state' name='State' id='state'></select>");
+            countryFieldSelector.closest('.field-group').find('.state-field-group').find('select').append("<option value='0'>Select a State</option>");
+            for (let key in statesCanadaJson) {
+                countryFieldSelector.closest('.field-group').find('.state-field-group').find('select').append("<option value='" + statesCanadaJson[key] + "'>" + statesCanadaJson[key] + "</option>")
+            }
+        } else {
+            countryFieldSelector.closest('.field-group').find('.state-field-group .state-holder').html("<input type='text' class='form-control field-normal state' name='State' id='state'>");
+        }
+    }
 });

@@ -231,25 +231,27 @@
                                             <div class="row small-gutters">
                                                 <div class="col-sm-4">
                                                     <div class="form-group">
-                                                        <label for="state" class="mb-1">State</label>
-                                                        <select id="state" class="form-control field-normal">
-                                                            <option>Select State</option>
-                                                            <option>Alabama</option>
-                                                            <option>Georgia</option>
-                                                            <option>Washinton</option>
+                                                        <label for="selector-country" class="mb-1">Country</label>
+                                                        <select id="selector-country" class="form-control field-normal selector-country">
+                                                            <option value="">Select Country</option>
+                                                            <option value="usa">USA</option>
+                                                            <option value="canada">Canada</option>
                                                         </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <div class="form-group state-field-group">
+                                                        <label for="state" class="mb-1">State</label>
+                                                        <div class="state-holder">
+                                                            <input type="text" id="state" class="form-control field-normal selector-state">
+                                                        </div>
                                                     </div>
                                                 </div>
 
                                                 <div class="col-sm-4">
                                                     <div class="form-group">
                                                         <label for="city" class="mb-1">City</label>
-                                                        <select id="city" class="form-control field-normal">
-                                                            <option>Select State</option>
-                                                            <option>Alabama</option>
-                                                            <option>Georgia</option>
-                                                            <option>Washinton</option>
-                                                        </select>
+                                                        <input id="city" type="text" class="form-control field-normal">
                                                     </div>
                                                 </div>
 
@@ -259,13 +261,16 @@
                                                         <input id="postal-code" type="text" class="form-control field-normal">
                                                     </div>
                                                 </div>
+
+                                                <div class="col-sm-8">
+                                                    <div class="form-group">
+                                                        <label for="street-address" class="mb-1">Street Address</label>
+                                                        <input id="street-address" type="text" class="form-control field-normal">
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
 
-                                        <div class="form-group">
-                                            <label for="street-address" class="field-label">Street Address</label>
-                                            <input id="street-address" type="text" class="form-control field-normal">
-                                        </div>
 
                                     </div>
                                 </div>
@@ -328,7 +333,7 @@
 <script src="assets/js/phone_validator.js"></script>
 
 <!--<script src="assets/js/script.js?v=1.0.1"></script>-->
-<script src="assets/js/live/script.js?v=1.0.2"></script>
+<script src="assets/js/live/script.js?v=1.0.3"></script>
 
 </body>
 </html>
