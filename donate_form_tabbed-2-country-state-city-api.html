@@ -9,7 +9,8 @@
     <link rel="stylesheet" href="assets/plugins/intl-tel-input/css/intlTelInput.min.css">
     <!-- select 2 -->
     <link rel="stylesheet" href="node_modules/select2/dist/css/select2.min.css">
-    <link rel="stylesheet" href="assets/css/style.css?v=1.0.1">
+<!--    <link rel="stylesheet" href="assets/css/style.css?v=1.0.1">-->
+    <link rel="stylesheet" href="assets/css/live/style.css?v=1.0.5">
 </head>
 <body>
 
@@ -234,27 +235,37 @@
                                                 <div class="col-sm-4">
                                                     <div class="form-group">
                                                         <label for="selector-country" class="mb-1">Country</label>
-                                                        <select id="selector-country" class="form-control select2 field-normal selector-country selector-country-js">
-                                                            <option value="">Select Country</option>
-                                                            <option value="usa">USA</option>
-                                                            <option value="canada">Canada</option>
-                                                            <option value="other">Other</option>
-                                                        </select>
+                                                        <div class="select-box">
+                                                            <div class="country-selector-holder-js">
+                                                                <input type="text" id="selector-country" name="Country" class="form-control field-normal input-country-js">
+                                                                </select>
+                                                            </div>
+                                                            <img src="assets/images/Iphone-spinner-2.gif" class="ajax-loader" alt="loading">
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-4">
                                                     <div class="form-group state-field-group">
-                                                        <label for="state" class="mb-1">State</label>
-                                                        <div class="state-holder">
-                                                            <input type="text" id="state" class="form-control field-normal selector-state">
+                                                        <label for="selector-state" class="mb-1">State</label>
+                                                        <div class="select-box">
+                                                            <div class="state-selector-holder-js">
+                                                                <input type="text" id="selector-state" name="State" class="form-control field-normal input-state-js">
+                                                            </div>
+                                                            <img src="assets/images/Iphone-spinner-2.gif" class="ajax-loader" style="display: none" alt="loading">
                                                         </div>
                                                     </div>
                                                 </div>
 
                                                 <div class="col-sm-4">
                                                     <div class="form-group">
-                                                        <label for="city" class="mb-1">City</label>
-                                                        <input id="city" type="text" class="form-control field-normal">
+                                                        <label for="selector-city" class="mb-1">City</label>
+                                                        <div class="select-box">
+                                                            <div class="city-selector-holder-js">
+                                                                <input type="text" id="selector-city" name="City" class="form-control field-normal input-city-js">
+                                                            </div>
+                                                            <img src="assets/images/Iphone-spinner-2.gif" class="ajax-loader" style="display: none;" alt="loading">
+                                                        </div>
+
                                                     </div>
                                                 </div>
 
@@ -338,7 +349,7 @@
 <script src="assets/js/phone_validator.js"></script>
 
 <!--<script src="assets/js/script.js?v=1.0.1"></script>-->
-<script src="assets/js/live/script.js?v=1.0.4"></script>
+<script src="assets/js/live/script.js?v=1.0.5"></script>
 
 </body>
 </html>

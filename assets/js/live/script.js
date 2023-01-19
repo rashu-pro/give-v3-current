@@ -511,19 +511,158 @@ $(function (event) {
 
     function statesFiller(countryFieldSelector) {
         if (countryFieldSelector.val() == "usa") {
-            countryFieldSelector.closest('.field-group').find('.state-field-group .state-holder').html("<select class='form-control field-normal state' name='State' id='state'></select>");
+            countryFieldSelector.closest('.field-group').find('.state-field-group .state-holder').html("<select class='form-control field-normal state' name='AddressState' id='AddressState'></select>");
             countryFieldSelector.closest('.field-group').find('.state-field-group').find('select').append("<option value='0'>Select a State</option>");
             for (let key in statesJson) {
                 countryFieldSelector.closest('.field-group').find('.state-field-group').find('select').append("<option value='" + statesJson[key] + "'>" + statesJson[key] + "</option>")
             }
         } else if (countryFieldSelector.val() == "canada") {
-            countryFieldSelector.closest('.field-group').find('.state-field-group .state-holder').html("<select class='form-control field-normal state' name='State' id='state'></select>");
+            countryFieldSelector.closest('.field-group').find('.state-field-group .state-holder').html("<select class='form-control field-normal state' name='AddressState' id='AddressState'></select>");
             countryFieldSelector.closest('.field-group').find('.state-field-group').find('select').append("<option value='0'>Select a State</option>");
             for (let key in statesCanadaJson) {
                 countryFieldSelector.closest('.field-group').find('.state-field-group').find('select').append("<option value='" + statesCanadaJson[key] + "'>" + statesCanadaJson[key] + "</option>")
             }
         } else {
-            countryFieldSelector.closest('.field-group').find('.state-field-group .state-holder').html("<input type='text' class='form-control field-normal state' name='State' id='state'>");
+            countryFieldSelector.closest('.field-group').find('.state-field-group .state-holder').html("<input type='text' class='form-control field-normal state' name='AddressState' id='AddressState'>");
         }
+    }
+
+    //=== select 2 initialization
+    if($('.select2').length>0){
+        $('.select2').select2();
+    }
+
+    $(document).on('select2:open', () => {
+        document.querySelector('.select2-search__field').focus();
+    });
+
+    /**
+     * country/state/city api
+     * https://countrystatecity.in/
+     */
+    let headers = new Headers();
+    headers.append("X-CSCAPI-KEY", "dERvN2VIc3c3QTNXNDZRaXlHRUpOcVEyWHVyYzNOZk1KSG9TN2xmcw==");
+
+    let requestOptions = {
+        method: 'GET',
+        headers: headers,
+        redirect: 'follow'
+    };
+
+    let countryHolderSelector = '.country-selector-holder-js';
+    let stateHolderSelector = '.state-selector-holder-js';
+    let cityHolderSelector = '.city-selector-holder-js';
+
+    let countrySelector = '.selector-country-js';
+    let countryInput = '.input-country-js';
+    let stateSelector = '.selector-state-js';
+    let stateInput = '.input-state-js';
+    let citySelector = '.selector-city-js';
+    let cityInput = '.input-city-js';
+
+    //=== fetch countries
+    fetch("https://api.countrystatecity.in/v1/countries", requestOptions)
+      .then(response => response.text())
+      .then(result =>{
+          let objCountries = JSON.parse(result);
+          if(objCountries.length<1) return;
+
+          generateSelectDropdown(countryInput, 'selector-country-js', 'Select country');
+
+          Object.keys(objCountries).forEach(function(key, index) {
+              let countryNameShort = objCountries[key]['iso2'];
+              let countryName = objCountries[key]['name'];
+              $(countrySelector).append('<option value="'+countryNameShort+'">'+countryName+'</option>');
+          });
+          $(countryHolderSelector).closest('.select-box').find('.ajax-loader').hide();
+      })
+      .catch(error => {
+          console.log('error', error);
+      });
+
+    // === on country selection
+    $(document).on('change', countrySelector, function (){
+        let self = $(this);
+        let selectedCountry = self.val();
+        $(stateHolderSelector).closest('.select-box').find('.ajax-loader').show();
+        $(stateSelector).empty();
+        $(citySelector).empty();
+        let url = `https://api.countrystatecity.in/v1/countries/${selectedCountry}/states`;
+        //=== fetch states
+        fetch(url, requestOptions)
+          .then(response => response.text())
+          .then(result => {
+              let objStates = JSON.parse(result);
+              if(objStates.length<1){
+                  $(stateHolderSelector).closest('.select-box').find('.ajax-loader').hide();
+                  return;
+              }
+
+              generateSelectDropdown(stateInput, 'selector-state-js', 'Select State')
+              Object.keys(objStates).forEach(function(key, index) {
+                  let stateNameShort = objStates[key]['iso2'];
+                  let stateName = objStates[key]['name'];
+                  $(stateSelector).append('<option value="'+stateNameShort+'">'+stateName+'</option>');
+              });
+              $(stateHolderSelector).closest('.select-box').find('.ajax-loader').hide();
+          })
+          .catch(error => {
+              console.log('error', error);
+          });
+    })
+
+
+    //=== on state selection
+    $(document).on('change', stateSelector, function (){
+        let self = $(this);
+        let selectedState = self.val();
+        let selectedCountry = $('.selector-country-js').val();
+        $(citySelector).empty();
+        $(cityHolderSelector).closest('.select-box').find('.ajax-loader').show();
+        let url = `https://api.countrystatecity.in/v1/countries/${selectedCountry}/states/${selectedState}/cities`;
+        //=== fetch cities
+        fetch(url, requestOptions)
+          .then(response => response.text())
+          .then(result => {
+              let objCities = JSON.parse(result);
+              if(objCities.length<1){
+                  $(cityHolderSelector).closest('.select-box').find('.ajax-loader').hide();
+                  return;
+              }
+
+              generateSelectDropdown(cityInput, 'selector-city-js', 'Select city');
+              Object.keys(objCities).forEach(function(key, index) {
+                  let cityName = objCities[key]['name'];
+                  $(citySelector).append('<option value="'+cityName+'">'+cityName+'</option>');
+              });
+              $(cityHolderSelector).closest('.select-box').find('.ajax-loader').hide();
+          })
+          .catch(error => {
+              console.log('error', error);
+          });
+
+    })
+
+
+    /**
+     * Generates select dropdown
+     * @param inputSelector
+     * @param selectorClass
+     * @param selectPlaceholder
+     */
+    function generateSelectDropdown(inputSelector, selectorClass, selectPlaceholder){
+        if($(inputSelector).length<1){
+            $('.'+selectorClass).empty();
+            return;
+        }
+        let id = $(inputSelector).attr('id');
+        let inputName = $(inputSelector).attr('name');
+        let selector = `<select id="${id}" class="form-control field-normal selector-country ${selectorClass}" name="${inputName}">
+                                        <option>${selectPlaceholder}</option>
+                                     </select>`;
+        $(inputSelector).parent().html(selector);
+        $(document).on('DOMNodeInserted', '.'+selectorClass, function () {
+            $(this).select2();
+        });
     }
 });
