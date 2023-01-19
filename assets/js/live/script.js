@@ -594,6 +594,7 @@ $(function (event) {
           .then(result => {
               let objStates = JSON.parse(result);
               if(objStates.length<1){
+                  replaceSelectWithInput(stateSelector, 'input-state-js');
                   $(stateHolderSelector).closest('.select-box').find('.ajax-loader').hide();
                   return;
               }
@@ -611,7 +612,6 @@ $(function (event) {
           });
     })
 
-
     //=== on state selection
     $(document).on('change', stateSelector, function (){
         let self = $(this);
@@ -626,6 +626,7 @@ $(function (event) {
           .then(result => {
               let objCities = JSON.parse(result);
               if(objCities.length<1){
+                  replaceSelectWithInput(citySelector, 'input-city-js');
                   $(cityHolderSelector).closest('.select-box').find('.ajax-loader').hide();
                   return;
               }
@@ -643,7 +644,6 @@ $(function (event) {
 
     })
 
-
     /**
      * Generates select dropdown
      * @param inputSelector
@@ -653,6 +653,7 @@ $(function (event) {
     function generateSelectDropdown(inputSelector, selectorClass, selectPlaceholder){
         if($(inputSelector).length<1){
             $('.'+selectorClass).empty();
+            $('.'+selectorClass).append('<option>'+selectPlaceholder+'</option>');
             return;
         }
         let id = $(inputSelector).attr('id');
@@ -664,5 +665,18 @@ $(function (event) {
         $(document).on('DOMNodeInserted', '.'+selectorClass, function () {
             $(this).select2();
         });
+    }
+
+    /**
+     * replaces select dropdown with input when ther is no item to add in the dropdown
+     * @param selectSelector
+     * @param inputClass
+     */
+    function replaceSelectWithInput(selectSelector, inputClass){
+        let id = $(selectSelector).attr('id');
+        let name = $(selectSelector).attr('name');
+        let inputField = `<input type="text" id="${id}" name="${name}" class="form-control field-normal ${inputClass}">`;
+        $(selectSelector).parent().html(inputField);
+
     }
 });
