@@ -6,14 +6,17 @@ $(function (event) {
 
     var type = getUrlParameter('recurringType');
     var recurringDuration = getUrlParameter('recurringDuration');
+    var slug = $('#company-slug').val();
 
+    
 
     if (type == "MONTHLY" || type == "monthly") {
         $('#IsRecurringGive').val(true);
         $('#IsRecurringGive').attr('checked', true);
         $('.checkbox-recurring').trigger('change');
-       // $('.checkbox-recurring').trigger('click');
+        // $('.checkbox-recurring').trigger('click');
         $('.recurring-period').slideDown('slow');
+        $('.recurring-period').show();
         $('.recurring-type').val('month');
     }
 
@@ -24,7 +27,6 @@ $(function (event) {
        // $('.checkbox-recurring').trigger('click');
         $('.recurring-period').slideDown('slow');
         $('.recurring-period').show();
-        $('.recurring-type').val(type);
         $('.recurring-type').val('day');
 
     }
@@ -105,22 +107,34 @@ $(function (event) {
 
     $('.checkbox-recurring').on('change', function () {
         var self = $(this);
-        if (self.prop('checked') == true) {
+        recurringWrapperToggle(self);
+    });
+
+    recurringWrapperToggle($('.checkbox-recurring'));
+
+    //=== RECURRING WRAPPER TOGGLE
+    function recurringWrapperToggle(selector){
+        if (selector.prop('checked') == true) {
             $('.recurring-period').slideDown('slow');
         } else {
             $('.recurring-period').slideUp('slow');
         }
-    });
-
-    if ($('.recurring-type').length > 0) {
-        if ($('.recurring-type').val() == "month") {
-            $('.recurring-duration').hide();
-        }
     }
+
+    //if ($('.recurring-type').length > 0) {
+    //    if ($('.recurring-type').val() == "month") {
+    //        $('.recurring-duration').hide();
+    //    }
+    //}
     $('.recurring-type').on('change', function () {
-        var self = $(this);
-        if (self.val() == "month") {
-            $('.recurring-duration').hide();
+        var slug = $('#company-slug').val(),
+            type = $('.recurring-type option:selected').val();
+        if (slug == 'mfc') {      
+            if (type == "month") {
+                $('.recurring-duration').hide();
+            } else {
+                $('.recurring-duration').show();
+            }
         } else {
             $('.recurring-duration').show();
         }
@@ -462,26 +476,26 @@ $(function (event) {
           "Montana": "Montana",
           "Nebraska": "Nebraska",
           "Nevada": "Nevada",
-          "NewHampshire": "NewHampshire",
-          "NewJersey": "NewJersey",
-          "NewMexico": "NewMexico",
-          "NewYork": "NewYork",
-          "NorthCarolina": "NorthCarolina",
-          "NorthDakota": "NorthDakota",
+          "New Hampshire": "New Hampshire",
+          "New Jersey": "New Jersey",
+          "New Mexico": "New Mexico",
+          "New York": "New York",
+          "North Carolina": "North Carolina",
+          "North Dakota": "North Dakota",
           "Ohio": "Ohio",
           "Oklahoma": "Oklahoma",
           "Oregon": "Oregon",
           "Pennsylvania": "Pennsylvania",
-          "RhodeIsland": "RhodeIsland",
-          "SouthCarolina": "SouthCarolina",
-          "SouthDakota": "SouthDakota",
+          "Rhode Island": "Rhode Island",
+          "South Carolina": "South Carolina",
+          "South Dakota": "South Dakota",
           "Tennessee": "Tennessee",
           "Texas": "Texas",
           "Utah": "Utah",
           "Vermont": "Vermont",
           "Virginia": "Virginia",
           "Washington": "Washington",
-          "WestVirginia": "WestVirginia",
+          "West Virginia": "West Virginia",
           "Wisconsin": "Wisconsin",
           "Wyoming": "Wyoming",
           "zUnknown": "zUnknown"
@@ -525,158 +539,5 @@ $(function (event) {
         } else {
             countryFieldSelector.closest('.field-group').find('.state-field-group .state-holder').html("<input type='text' class='form-control field-normal state' name='AddressState' id='AddressState'>");
         }
-    }
-
-    //=== select 2 initialization
-    if($('.select2').length>0){
-        $('.select2').select2();
-    }
-
-    $(document).on('select2:open', () => {
-        document.querySelector('.select2-search__field').focus();
-    });
-
-    /**
-     * country/state/city api
-     * https://countrystatecity.in/
-     */
-    let headers = new Headers();
-    headers.append("X-CSCAPI-KEY", "dERvN2VIc3c3QTNXNDZRaXlHRUpOcVEyWHVyYzNOZk1KSG9TN2xmcw==");
-
-    let requestOptions = {
-        method: 'GET',
-        headers: headers,
-        redirect: 'follow'
-    };
-
-    let countryHolderSelector = '.country-selector-holder-js';
-    let stateHolderSelector = '.state-selector-holder-js';
-    let cityHolderSelector = '.city-selector-holder-js';
-
-    let countrySelector = '.selector-country-js';
-    let countryInput = '.input-country-js';
-    let stateSelector = '.selector-state-js';
-    let stateInput = '.input-state-js';
-    let citySelector = '.selector-city-js';
-    let cityInput = '.input-city-js';
-
-    //=== fetch countries
-    fetch("https://api.countrystatecity.in/v1/countries", requestOptions)
-      .then(response => response.text())
-      .then(result =>{
-          let objCountries = JSON.parse(result);
-          if(objCountries.length<1) return;
-
-          generateSelectDropdown(countryInput, 'selector-country-js', 'Select country');
-
-          Object.keys(objCountries).forEach(function(key, index) {
-              let countryNameShort = objCountries[key]['iso2'];
-              let countryName = objCountries[key]['name'];
-              $(countrySelector).append('<option value="'+countryNameShort+'">'+countryName+'</option>');
-          });
-          $(countryHolderSelector).closest('.select-box').find('.ajax-loader').hide();
-      })
-      .catch(error => {
-          console.log('error', error);
-      });
-
-    // === on country selection
-    $(document).on('change', countrySelector, function (){
-        let self = $(this);
-        let selectedCountry = self.val();
-        $(stateHolderSelector).closest('.select-box').find('.ajax-loader').show();
-        $(stateSelector).empty();
-        $(citySelector).empty();
-        let url = `https://api.countrystatecity.in/v1/countries/${selectedCountry}/states`;
-        //=== fetch states
-        fetch(url, requestOptions)
-          .then(response => response.text())
-          .then(result => {
-              let objStates = JSON.parse(result);
-              if(objStates.length<1){
-                  replaceSelectWithInput(stateSelector, 'input-state-js');
-                  $(stateHolderSelector).closest('.select-box').find('.ajax-loader').hide();
-                  return;
-              }
-
-              generateSelectDropdown(stateInput, 'selector-state-js', 'Select State')
-              Object.keys(objStates).forEach(function(key, index) {
-                  let stateNameShort = objStates[key]['iso2'];
-                  let stateName = objStates[key]['name'];
-                  $(stateSelector).append('<option value="'+stateNameShort+'">'+stateName+'</option>');
-              });
-              $(stateHolderSelector).closest('.select-box').find('.ajax-loader').hide();
-          })
-          .catch(error => {
-              console.log('error', error);
-          });
-    })
-
-    //=== on state selection
-    $(document).on('change', stateSelector, function (){
-        let self = $(this);
-        let selectedState = self.val();
-        let selectedCountry = $('.selector-country-js').val();
-        $(citySelector).empty();
-        $(cityHolderSelector).closest('.select-box').find('.ajax-loader').show();
-        let url = `https://api.countrystatecity.in/v1/countries/${selectedCountry}/states/${selectedState}/cities`;
-        //=== fetch cities
-        fetch(url, requestOptions)
-          .then(response => response.text())
-          .then(result => {
-              let objCities = JSON.parse(result);
-              if(objCities.length<1){
-                  replaceSelectWithInput(citySelector, 'input-city-js');
-                  $(cityHolderSelector).closest('.select-box').find('.ajax-loader').hide();
-                  return;
-              }
-
-              generateSelectDropdown(cityInput, 'selector-city-js', 'Select city');
-              Object.keys(objCities).forEach(function(key, index) {
-                  let cityName = objCities[key]['name'];
-                  $(citySelector).append('<option value="'+cityName+'">'+cityName+'</option>');
-              });
-              $(cityHolderSelector).closest('.select-box').find('.ajax-loader').hide();
-          })
-          .catch(error => {
-              console.log('error', error);
-          });
-
-    })
-
-    /**
-     * Generates select dropdown
-     * @param inputSelector
-     * @param selectorClass
-     * @param selectPlaceholder
-     */
-    function generateSelectDropdown(inputSelector, selectorClass, selectPlaceholder){
-        if($(inputSelector).length<1){
-            $('.'+selectorClass).empty();
-            $('.'+selectorClass).append('<option>'+selectPlaceholder+'</option>');
-            return;
-        }
-        let id = $(inputSelector).attr('id');
-        let inputName = $(inputSelector).attr('name');
-        let selector = `<select id="${id}" class="form-control field-normal selector-country ${selectorClass}" name="${inputName}">
-                                        <option>${selectPlaceholder}</option>
-                                     </select>`;
-        $(inputSelector).parent().html(selector);
-        $(document).on('DOMNodeInserted', '.'+selectorClass, function () {
-            $(this).select2();
-        });
-    }
-
-    /**
-     * replaces select dropdown with input when ther is no item to add in the dropdown
-     * @param selectSelector
-     * @param inputClass
-     */
-    function replaceSelectWithInput(selectSelector, inputClass){
-        let id = $(selectSelector).attr('id');
-        let name = $(selectSelector).attr('name');
-        let inputField = `<input type="text" id="${id}" name="${name}" class="form-control field-normal ${inputClass}">`;
-        $(selectSelector).parent().html(inputField);
-
     }
 });

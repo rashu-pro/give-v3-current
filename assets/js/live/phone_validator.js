@@ -11,7 +11,7 @@ const userIpCookieName = "userCountry";
 if(phoneNumberSelectors.length>0){
     phoneNumberValidator(phoneNumberSelectors, phoneNumberWrapperSelectorName, alertMessageSelectorName);
     //=== loading utils.js script and then giving country list div a custom width
-    window.intlTelInputGlobals.loadUtils("assets/plugins/intl-tel-input/js/utils.js").then(function () {
+    window.intlTelInputGlobals.loadUtils("/Content/common-plugins/intl-tel-input/js/utils.js").then(function () {
         console.log('util.js loaded!');
     });
 }
@@ -115,14 +115,14 @@ function errorHandling(iti, phoneNumber, phoneNumberWrapperSelectorName, alertMe
         showErrorMessage = 1;
         statusMessage = "Number is too short!";
         alertClass = 'text-danger';
-        isvalidClass = 'field-invalid';
+        isvalidClass = 'invalid';
     }
 
     if(!isValid && error === intlTelInputUtils.validationError.TOO_LONG){
         showErrorMessage = 1;
         statusMessage = "Number is too long!";
         alertClass = 'text-danger';
-        isvalidClass = 'field-invalid';
+        isvalidClass = 'invalid';
     }
 
     if(!isValid && error === intlTelInputUtils.validationError.IS_POSSIBLE){
@@ -133,8 +133,8 @@ function errorHandling(iti, phoneNumber, phoneNumberWrapperSelectorName, alertMe
     }
 
     if(isValid && error === intlTelInputUtils.validationError.IS_POSSIBLE){
-        showErrorMessage = 0;
-        statusMessage = "Number is valid!";
+        showErrorMessage = 1;
+        // statusMessage = "Number is valid!";
         alertClass = 'text-success';
         isvalidClass = 'valid';
         isFormGroupValid = 'field-validated';
@@ -153,7 +153,7 @@ function errorHandling(iti, phoneNumber, phoneNumberWrapperSelectorName, alertMe
         alertTag.append(statusMessage);
         phoneNumber.classList.add(isvalidClass);
         if(isFormGroupValid!=='') phoneNumber.parentElement.parentElement.classList.add(isFormGroupValid);
-        phoneNumber.closest(phoneNumberWrapperSelectorName).append(alertTag);
+        // phoneNumber.closest(phoneNumberWrapperSelectorName).append(alertTag);
     }
 
     hiddenField.value = number;
