@@ -7,10 +7,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
     <!-- intl-tel-input -->
     <link rel="stylesheet" href="assets/plugins/intl-tel-input/css/intlTelInput.min.css">
-    <link rel="stylesheet" href="assets/css/style.css?v=1.0.1">
+    <link rel="stylesheet" href="assets/css/live/style.css?v=1.0.1">
 </head>
 <body>
-
 
 <div class="main-wrapper">
     <header>
@@ -40,15 +39,12 @@
                             <h4 class="h4 m-0">Donate Now</h4>
                         </div>
 
-
-
                         <div class="donation-body">
 
                             <!--TAB HEAD====================-->
                             <div class="tabbed-head">
                                 <ul class="nav">
                                     <li class="nav-tabbed active"><a href="donate_form_tabbed.html"><span class="tab-image"><img src="assets/images/credit_card_white_bg.jpg"></span> </a> </li>
-                                    <li class="nav-tabbed"><a href="donate_form_tabbed-2.html"> <span class="tab-image"><img src="assets/images/ach_resized.jpg"></span> </a> </li>
                                 </ul>
                             </div>
 
@@ -224,46 +220,47 @@
                                     </div>
                                 </div>
 
-                                <!-- ADDRESS AUTOCOMPLETE: GOOGLE MAP API -->
                                 <div class="field-group">
-                                    <div class="address wrapper section-wrapper address-autocomplete-block-js">
+                                    <div class="address wrapper section-wrapper">
                                         <h4 class="field-group-title mb-3">Address:</h4>
-
-                                        <div class="form-group">
-                                            <label for="address-street" class="field-label">Street Address</label>
-                                            <input id="address-street" type="text" class="form-control field-normal street-address-pin street-address-js">
-                                        </div>
-
                                         <div class="">
                                             <div class="row small-gutters">
-                                                <div class="col-6 col-sm-4 col-md-3">
+                                                <div class="col-sm-4">
                                                     <div class="form-group">
-                                                        <label for="address-city" class="field-label">City</label>
-                                                        <input type="text" id="address-city" class="form-control field-normal input-city-js">
+                                                        <label for="state" class="mb-1">State</label>
+                                                        <select id="state" class="form-control field-normal">
+                                                            <option>Select State</option>
+                                                            <option>Alabama</option>
+                                                            <option>Georgia</option>
+                                                            <option>Washinton</option>
+                                                        </select>
                                                     </div>
                                                 </div>
 
-                                                <div class="col-6 col-sm-4 col-md-3">
+                                                <div class="col-sm-4">
                                                     <div class="form-group">
-                                                        <label for="address-state" class="field-label">State</label>
-                                                        <input type="text" id="address-state" class="form-control field-normal input-state-js">
+                                                        <label for="city" class="mb-1">City</label>
+                                                        <select id="city" class="form-control field-normal">
+                                                            <option>Select State</option>
+                                                            <option>Alabama</option>
+                                                            <option>Georgia</option>
+                                                            <option>Washinton</option>
+                                                        </select>
                                                     </div>
                                                 </div>
 
-                                                <div class="col-6 col-sm-4 col-md-3">
+                                                <div class="col-sm-4">
                                                     <div class="form-group">
-                                                        <label for="address-postal-code" class="field-label">Postal Code</label>
-                                                        <input id="address-postal-code" type="text" class="form-control field-normal field-normal input-postal-code-js">
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-6 col-sm-4 col-md-3">
-                                                    <div class="form-group">
-                                                        <label for="address-country" class="field-label">Country</label>
-                                                        <input type="text" id="address-country" class="form-control field-normal input-country-js">
+                                                        <label for="postal-code" class="mb-1">Postal Code</label>
+                                                        <input id="postal-code" type="text" class="form-control field-normal">
                                                     </div>
                                                 </div>
                                             </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="street-address" class="field-label">Street Address</label>
+                                            <input id="street-address" type="text" class="form-control field-normal">
                                         </div>
 
                                     </div>
@@ -278,7 +275,7 @@
                                     <div class="donation-subtitle mb-3">
                                         <p class="text-small m-0">Please note that you will see a charge from "Muslim Family Center" on your credit card statement.<br>
                                             Muslim Family Center is a tax exempt organization under section 501(c)(3) of Internal Revenue Code.
-                                            Employer Identification Number 46-5035493.</p>
+                                            Employer Idenfication Number 46-5035493.</p>
                                     </div>
                                     <div class="term-check mb-1 mt-4">
                                         <div class="form-check term-check mb-4">
@@ -360,12 +357,6 @@
 
 <!--<script src="assets/js/script.js?v=1.0.1"></script>-->
 <script src="assets/js/live/script.js?v=1.0.2"></script>
-
-<!-- google map api -->
-<script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRIIew-eQp2QjI5mRLFOE-qoUnl-qKC38&libraries=places&callback=initMap"></script>
-
-<script src="assets/js/initmap.js"></script>
-
 
 </body>
 </html>
