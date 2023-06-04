@@ -541,3 +541,89 @@ $(function (event) {
         }
     }
 });
+
+/**
+ * New changes
+ * 04/06/2023
+ */
+//=== form validation [client-side]
+let inputFieldSelector = '.form-control';
+let inputFieldRequiredSelector = '.form-group.required-group .input-validation';
+let inputInvalidSelector = '.input-validation.invalid';
+let formGroupSelector = '.form-group';
+let invalidClassName = 'field-invalid';
+let validClassName = 'field-validated';
+let errorMessageClassName = 'error-message';
+let errorMessage = 'this field is required!';
+let donateAmountButtonSelector = '.btn-amount-donate-js';
+
+//=== on submit button click
+$(document).on('click', '#btnCharge', function (e){
+    e.preventDefault();
+    $(inputFieldRequiredSelector).each(function (i, element){
+        singleValidation($(element), $(element).closest(formGroupSelector), invalidClassName, validClassName, errorMessageClassName, errorMessage);
+    });
+    if($(inputInvalidSelector).length>0) {
+        $(inputInvalidSelector).first().focus();
+        return;
+    }
+    //=== submit the form
+    submitForm();
+});
+
+//=== on field keyup event
+$(document).on('keyup change', inputFieldRequiredSelector, function (e) {
+    let self = $(this);
+    if(self.val().length>0){
+        self.removeClass('invalid');
+        self.removeClass('field-invalid');
+        self.closest('.form-group').find('.error-message').remove();
+    }
+});
+
+//=== on field blur event
+$(document).on('blur', inputFieldRequiredSelector, function (e){
+    singleValidation($(this), $(this).closest(formGroupSelector), invalidClassName, validClassName, errorMessageClassName, errorMessage);
+});
+
+//=== allow only number and -
+$(document).on('keypress', '.input-phone-number', function (e){
+    if(e.which===45) return;
+    if(e.which<48 || e.which>58) e.preventDefault();
+});
+
+//=== allow only number
+$(document).on('keypress', '.input-number', function (e){
+    if(e.which<48 || e.which>58) e.preventDefault();
+});
+
+//=== on donateamount button click
+$(document).on('click', '.btn-amount-donate-js', function (e){
+    e.preventDefault();
+    let self = $(this);
+    let donateAmount = self.attr('data-value');
+    $(donateAmountButtonSelector).removeClass('active');
+    self.addClass('active');
+    $('#other-amount').val(donateAmount);
+    $('#txtAmount').val(donateAmount);
+    $('#txtAmount').attr('data-solid', donateAmount);
+    loadDonateAmount();
+
+    if(!self.closest('.form-group').hasClass('required-group')) return;
+    donateAmountValidation(self);
+});
+
+$(document).on('keyup change focus', '#other-amount', function (){
+    let self = $(this);
+    if(self.val()<=0) return;
+    $(donateAmountButtonSelector).removeClass('active');
+    setOtherAmountValue();
+    loadDonateAmount();
+
+    if(!self.closest('.form-group').hasClass('required-group')) return;
+    donateAmountValidation(self);
+});
+
+$(document).on('change', '#donate-fee-cover', function (e){
+    loadDonateAmount();
+})

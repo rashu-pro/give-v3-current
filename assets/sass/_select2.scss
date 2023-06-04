@@ -1,7 +1,8 @@
-$input-height:50px;
-$input-line-height:48px;
+$input-height:$field_height;
+$input-line-height: $select2_field_lineheight;
 .select2{
   &-container{
+    display: block;
     &--default{
       .select2{
         &-selection{
@@ -19,6 +20,9 @@ $input-line-height:48px;
 
                 &__rendered{
                   line-height: $input-line-height;
+                  color:#010101;
+                  font-size: 1.1rem;
+                  font-weight: 500;
                 }
               }
             }
@@ -54,4 +58,8 @@ $input-line-height:48px;
       transform:translateY(-50%);
     }
   }
+}
+
+.select2-container--default .select2-selection--single .select2-selection__placeholder{
+  color:#010101;
 }

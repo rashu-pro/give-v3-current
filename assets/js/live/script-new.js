@@ -355,7 +355,7 @@ $(document).on('click', '.btn-amount-donate-js', function (e){
     let donateAmount = self.attr('data-value');
     $(donateAmountButtonSelector).removeClass('active');
     self.addClass('active');
-    $('#other-amount').val('');
+    $('#other-amount').val(donateAmount);
     $('#txtAmount').val(donateAmount);
     $('#txtAmount').attr('data-solid', donateAmount);
     loadDonateAmount();
@@ -380,92 +380,11 @@ $(document).on('change', '#donate-fee-cover', function (e){
 })
 
 //=== select 2 initialization
-if($('.select2').length>0){
-    $('.select2').select2();
-}
-
-//=== country/state/city api
-let authToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJfZW1haWwiOiJyYXNodS5za2lmZnRlY2hAZ21haWwuY29tIiwiYXBpX3Rva2VuIjoiSkszT3NJSm85ZG05S0Y5eDNYUGM1emQwd2NXQVZrTmNhYXBZNm45T29UclhPNU9nanZUMjVuVTNRSUQtcWxDcGIwbyJ9LCJleHAiOjE2Njg3NjYzNzJ9.c-eN8CwrR_U8YkFWJd3hFX5iRxquWKbnb7PXmicj-yA";
-//authToken expiry time 24 hrs
-//have to generate auth token every 24 hrs
-let tokenCreatedAt = Date.now();
-const optionsReqHeader = {
-    method: 'GET',
-    headers: {
-        "Accept": "application/json",
-        "api-token": "JK3OsIJo9dm9KF9x3XPc5zd0wcWAVkNcaapY6n9OoTrXO5OgjvT25nU3QID-qlCpb0o",
-        "user-email": "rashu.skifftech@gmail.com"
-    }
-}
-authToken = false;
-
-//generates auth token
-if(!authToken){
-    console.log('token expired, new token is being created...');
-    fetch('https://www.universal-tutorial.com/api/getaccesstoken', optionsReqHeader)
-        .then(response => response.json())
-        .then(response =>{
-            authToken = response.auth_token;
-            const optionsReqHeaderGetData = {
-                method: 'GET',
-                headers: {
-                    "Authorization": "Bearer "+response.auth_token,
-                    "Accept": "application/json"
-                }
-            }
-
-            //request to get all the states for United States
-            let country = 'United States';
-            fetch('https://www.universal-tutorial.com/api/states/'+country, optionsReqHeaderGetData)
-              .then(response => response.json())
-              .then(response =>{
-                  let counter = 0;
-                  for (let obj in response) {
-                      var newOption = new Option(response[counter].state_name, response[counter].state_name, false, false);
-                      $('#selector-state').append(newOption);
-                      counter++;
-                  }
-                  $('#selector-state').closest('.select-box').find('.ajax-loader').hide();
-              })
-              .catch(err => console.error(err));
-        })
-        .catch(err => console.log.error(err));
-}
-
-$(document).on('change', '#selector-state', function (){
-    let selectedState = this.value;
-    selectedState = selectedState.replace(/\s/g, "");
-    let url = `https://www.universal-tutorial.com/api/cities/${selectedState}`;
-    $('#selector-city').closest('.select-box').find('.ajax-loader').show();
-
-    fetch('https://www.universal-tutorial.com/api/getaccesstoken', optionsReqHeader)
-      .then(response => response.json())
-      .then(response =>{
-          const optionsReqHeaderGetData = {
-              method: 'GET',
-              headers: {
-                  "Authorization": "Bearer "+response.auth_token,
-                  "Accept": "application/json"
-              }
-          }
-
-          fetch(url, optionsReqHeaderGetData)
-            .then(response => response.json())
-            .then(response =>{
-                $('#selector-city').empty();
-                $('#selector-city').append("<option value=''>Select City</option>");
-                let counter = 0;
-                for (let obj in response) {
-                    var newOption = new Option(response[counter].city_name, response[counter].city_name, false, false);
-                    $('#selector-city').append(newOption);
-                    counter++;
-                }
-                $('#selector-city').closest('.select-box').find('.ajax-loader').hide();
-            })
-            .catch(err => console.error(err));
-      })
-      .catch(err => console.log.error(err));
-});
+$('.select2').each(function (i, element){
+    $(element).select2({
+        minimumResultsForSearch: Infinity
+    });
+})
 
 //=== modal action
 $(document).on('click', '#modal-btn-yes', function (e){

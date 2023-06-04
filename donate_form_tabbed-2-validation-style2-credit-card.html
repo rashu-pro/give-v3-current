@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="node_modules/select2/dist/css/select2.min.css">
     <!-- intl-tel-input -->
     <link rel="stylesheet" href="assets/plugins/intl-tel-input/css/intlTelInput.min.css">
-    <link rel="stylesheet" href="assets/css/style.css?v=2.0.2">
+    <link rel="stylesheet" href="assets/css/style.css?v=2.0.3">
 </head>
 <body>
 
@@ -48,7 +48,6 @@
                     <div class="tabbed-head">
                         <ul class="nav">
                             <li class="nav-tabbed active"><a href="javascript:void(0)"><span class="tab-image"><img src="assets/images/credit_card_white_bg.jpg" alt="credit card"></span> </a> </li>
-                            <li class="nav-tabbed"><a href="donate_form_tabbed-2-validation-style2.html"> <span class="tab-image"><img src="assets/images/ach_resized.jpg" alt="ach"></span> </a> </li>
                         </ul>
                     </div>
 
@@ -77,8 +76,12 @@
                                             </div>
 
                                             <div class="other-amount mt-4">
-                                                <label for="other-amount" class="field-label">Other amount</label>
-                                                <input id="other-amount" type="text" class="form-control input-number" value="">
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text">$</span>
+                                                    </div>
+                                                    <input id="other-amount" type="text" class="form-control input-number" placeholder="Other Amount" value="">
+                                                </div>
                                             </div>
                                         </div>
                                         <input class="input-validation"
@@ -108,7 +111,7 @@
                                         <div class="form-group required-group">
                                             <div class="position-relative">
                                                 <label for="donate-to" class="field-label d-none">Donate to</label>
-                                                <select id="donate-to" class="form-control field-normal input-validation" data-error="Select a category">
+                                                <select id="donate-to" data-placeholder="Select a Category" class="form-control input-validation select2">
                                                     <option value="">Select Category</option>
                                                     <option value="1">Zakat al Fitr</option>
                                                     <option value="2">Burial Fund</option>
@@ -139,8 +142,10 @@
                                         <div class="col-sm-4">
                                             <div class="form-group">
                                                 <label for="recurring-by">Recurring by</label>
-                                                <select id="recurring-by" class="form-control recurring-type">
-                                                    <option value="0">Select One</option>
+                                                <select id="recurring-by"
+                                                        data-placeholder="Select One"
+                                                        class="form-control recurring-type input-validation select2">
+                                                    <option value="">Select One</option>
                                                     <option value="1">Daily</option>
                                                     <option value="2">Weekly</option>
                                                     <option value="3">Monthly</option>
@@ -152,8 +157,10 @@
                                         <div class="col-sm-4">
                                             <div class="form-group recurring-duration">
                                                 <label for="recurring-duration">Recurring Duration</label>
-                                                <select id="recurring-duration" class="form-control">
-                                                    <option>Select Duration</option>
+                                                <select id="recurring-duration"
+                                                        data-placeholder="Select Duration"
+                                                        class="form-control input-validation select2">
+                                                    <option value="">Select Duration</option>
                                                     <option value="1">1</option>
                                                     <option value="2">2</option>
                                                     <option value="3">3</option>
@@ -172,25 +179,37 @@
                         <div class="field-group">
                             <div class="payment-wrapper section-wrapper">
                                 <h4 class="field-group-title mb-4">Payment Details:</h4>
+
                                 <div class="form-group required-group">
-                                    <div class="position-relative">
-                                        <label for="email" class="field-label required-sign"><span class="text-danger required-mark">*</span> <span class="label-text">Email</span></label>
-                                        <input id="email" type="email" class="form-control field-normal input-validation validation-email" data-error-message="Invalid email address" value="">
+                                    <div class="position-relative card-holder">
+                                        <label class="field-label required-sign" for="card-number"><span class="text-danger required-mark">*</span> <span class="lable-text">Card Number</span></label>
+                                        <input type="text" class="form-control field-normal format-card-number input-validation" id="card-number">
+                                        <!--<span class="card_icon"></span>-->
+                                    </div>
+
+                                    <div class="card-images">
+                                        <div class="card_icon">
+                                            <span class="visa"><img src="assets/images/visa_60x40.jpg"> </span>
+                                            <span class="master-card"><img src="assets/images/master_card_60x40.png"> </span>
+                                            <span class="american-express"><img src="assets/images/american_express_60x40.png"> </span>
+                                            <span class="discover"><img src="assets/images/discover_card.png"> </span>
+                                        </div>
+
                                     </div>
                                 </div>
 
                                 <div class="">
                                     <div class="row small-gutters">
+
                                         <div class="col-sm-6">
                                             <div class="form-group required-group">
                                                 <div class="position-relative">
-                                                    <label for="name" class="field-label required-sign"><span class="text-danger required-mark">*</span> <span class="lable-text">Name on Card</span></label>
-                                                    <input id="name" type="text" class="form-control field-normal input-validation validation-text" data-min-length="6" name="Mr. Raihan">
+                                                    <label for="email" class="field-label required-sign"><span class="text-danger required-mark">*</span> <span class="label-text">Email</span></label>
+                                                    <input id="email" type="email" class="form-control field-normal input-validation validation-email" data-error-message="Invalid email address" value="">
                                                 </div>
-
                                             </div>
-
                                         </div>
+
                                         <div class="col-sm-6">
                                             <div class="form-group phone-number-validator-wrapper required-group">
                                                 <div class="position-relative">
@@ -208,37 +227,26 @@
                                     <div class="row small-gutters">
                                         <div class="col-sm-6">
                                             <div class="form-group required-group">
-                                                <div class="position-relative card-holder">
-                                                    <label class="field-label required-sign" for="card-number"><span class="text-danger required-mark">*</span> <span class="lable-text">Card Number</span></label>
-                                                    <input type="text" class="form-control field-normal format-card-number input-validation" id="card-number">
-                                                    <!--<span class="card_icon"></span>-->
+                                                <div class="position-relative">
+                                                    <label for="name" class="field-label required-sign"><span class="text-danger required-mark">*</span> <span class="lable-text">Name on Card</span></label>
+                                                    <input id="name" type="text" class="form-control field-normal input-validation validation-text" data-min-length="6" name="Mr. Raihan">
                                                 </div>
 
-                                                <div class="card-images">
-                                                    <div class="card_icon">
-                                                        <span class="visa"><img src="assets/images/visa_60x40.jpg"> </span>
-                                                        <span class="master-card"><img src="assets/images/master_card_60x40.png"> </span>
-                                                        <span class="american-express"><img src="assets/images/american_express_60x40.png"> </span>
-                                                        <span class="discover"><img src="assets/images/discover_card.png"> </span>
-                                                    </div>
-
-                                                </div>
                                             </div>
-
 
                                         </div>
 
                                         <div class="col-sm-3">
-                                            <div class="form-group position-relative">
-                                                <label for="expiry-card" class="field-label">MM/YY</label>
-                                                <input id="expiry-card" type="text" class="form-control field-normal format-expiry">
+                                            <div class="form-group required-group position-relative">
+                                                <label for="expiry-card" class="field-label required-sign"><span class="text-danger required-mark">*</span> <span class="lable-text">MM/YY</span></label>
+                                                <input id="expiry-card" type="text" class="form-control field-normal format-expiry input-validation validation-text" data-min-length="5">
                                             </div>
 
                                         </div>
-                                        <div class="form-group col-sm-3">
+                                        <div class="form-group required-group col-sm-3">
                                             <div class="position-relative">
-                                                <label for="cvv" class="field-label">CVV</label>
-                                                <input id="cvv" type="text" class="form-control field-normal format-cvv">
+                                                <label for="cvv" class="field-label required-sign"> <span class="text-danger required-mark">*</span> <span class="lable-text">CVV</span> </label>
+                                                <input id="cvv" type="text" class="form-control field-normal format-cvv input-validation validation-text">
                                                 <span class="icon-cvv">
                                                         <img src="assets/images/icon-vcccode.png">
                                                     </span>
@@ -250,60 +258,52 @@
                             </div>
                         </div>
 
+                        <!-- ADDRESS AUTOCOMPLETE: GOOGLE MAP API -->
                         <div class="field-group">
-                            <div class="address wrapper section-wrapper">
+                            <div class="address-wrapper section-wrapper address-autocomplete-block-js">
                                 <h4 class="field-group-title mb-3">Address:</h4>
+
+                                <div class="form-group">
+                                    <label for="address-street" class="field-label">Street Address</label>
+                                    <input id="address-street" type="text" class="form-control field-normal street-address-pin street-address-js">
+                                </div>
+
                                 <div class="">
                                     <div class="row small-gutters">
-                                        <div class="col-sm-4">
-                                            <div class="form-group required-group">
-                                                <div class="position-relative">
-                                                    <label for="selector-state" class="mb-1">State</label>
-                                                    <div class="select-box">
-                                                        <select id="selector-state" data-city-selctor="#selector-city" class="form-control field-normal input-validation select2">
-                                                            <option value="">Select State</option>
-                                                        </select>
-                                                        <img src="assets/images/Iphone-spinner-2.gif" class="ajax-loader" style="display: inline-block" alt="loading">
-                                                    </div>
-
-                                                </div>
-
-                                            </div>
-                                        </div>
-
-                                        <div class="col-sm-4">
-                                            <div class="form-group required-group">
-                                                <div class="position-relative">
-                                                    <label for="selector-city" class="mb-1">City</label>
-                                                    <div class="select-box">
-                                                        <select id="selector-city" class="form-control input-validation select2 field-normal">
-                                                            <option>Select City</option>
-                                                        </select>
-                                                        <img src="assets/images/Iphone-spinner-2.gif" class="ajax-loader" alt="loading">
-                                                    </div>
-
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-sm-4">
+                                        <div class="col-6 col-sm-4 col-md-3">
                                             <div class="form-group">
-                                                <label for="postal-code" class="mb-1">Postal Code</label>
-                                                <input id="postal-code" type="text" class="form-control field-normal">
+                                                <label for="address-city" class="field-label">City</label>
+                                                <input type="text" id="address-city" class="form-control field-normal input-city-js">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-6 col-sm-4 col-md-3">
+                                            <div class="form-group">
+                                                <label for="address-state" class="field-label">State</label>
+                                                <input type="text" id="address-state" class="form-control field-normal input-state-js">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-6 col-sm-4 col-md-3">
+                                            <div class="form-group">
+                                                <label for="address-postal-code" class="field-label">Postal Code</label>
+                                                <input id="address-postal-code" type="text" class="form-control field-normal field-normal input-postal-code-js">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-6 col-sm-4 col-md-3">
+                                            <div class="form-group">
+                                                <label for="address-country" class="field-label">Country</label>
+                                                <input type="text" id="address-country" class="form-control field-normal input-country-js">
                                             </div>
                                         </div>
                                     </div>
                                 </div>
 
-                                <div class="form-group">
-                                    <label for="street-address" class="field-label">Street Address</label>
-                                    <input id="street-address" type="text" class="form-control field-normal">
-                                </div>
-
                             </div>
                         </div>
 
-                        <div class="form-group mt-3">
+                        <div class="form-group mt-4">
                             <label for="note">Note</label>
                             <textarea id="note" class="form-control" rows="4"></textarea>
                         </div>
@@ -369,7 +369,7 @@
                 </div>
                 <div class="modal-footer">
                     <div class="btn-holder">
-                        <button type="button" class="btn btn-dark" id="modal-btn-no"><img src="assets/images/cancel_white_40.png" class="img-left">Cancel</button>
+                        <button type="button" class="btn btn-dark" id="modal-btn-no" data-dismiss="modal"><img src="assets/images/cancel_white_40.png" class="img-left">Cancel</button>
                         <button type="button" class="btn btn-success" id="modal-btn-yes">Yes <img src="assets/images/tick-mark_white_40.png" class="img-right"></button>
                     </div>
                 </div>
@@ -392,7 +392,12 @@
 <!-- select 2 -->
 <script src="node_modules/select2/dist/js/select2.min.js"></script>
 <!--<script src="assets/js/script.js?v=2.0.1"></script>-->
-<script src="assets/js/live/script-new.js?v=1.0.1"></script>
+<!--<script src="assets/js/live/script-new.js?v=1.0.1"></script>-->
+<script src="assets/js/live/script.js?v=2.0.3"></script>
+
+<!-- google map api -->
+<script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRIIew-eQp2QjI5mRLFOE-qoUnl-qKC38&libraries=places&callback=initMap"></script>
+<script src="assets/js/initmap.js"></script>
 
 <!-- inline script -->
 <script>

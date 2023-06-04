@@ -1,7 +1,3 @@
-.form-control{
-  border-color:#838383;
-}
-
 .required{
   &-sign{
     .required{
@@ -348,4 +344,116 @@
       }
     }
   }
+}
+
+.field-normal{
+  height:$field_height;
+}
+
+.field-label{
+  transition:0.4s all ease;
+  margin:0;
+  position: absolute;
+  top:26%;
+  left:14px;
+  background-color: #fff;
+  //color: rgba(131, 131, 131, 0.49);
+  cursor:auto;
+  font-size:1.1rem;
+  font-weight: 500;
+  &.required-sign{
+    padding-right:18px;
+  }
+  &.focused{
+    top:-12px;
+    color:#202020;
+    cursor:default;
+    font-weight: 400;
+    font-size: 1rem;
+  }
+}
+.other-amount{
+  .form-control{
+    height:70px;
+  }
+  .input-group{
+    &-text{
+      padding: 0 19px;
+      font-size: 30px;
+      font-weight: 600;
+    }
+  }
+}
+
+.form-control{
+  border-color:#838383;
+  color: #010101;
+  font-weight: 500;
+  font-size:1.1rem;
+
+  &.field-invalid{
+    &:focus{
+      box-shadow:none;
+      border:2px solid #202020;
+    }
+  }
+  &:focus{
+    box-shadow:none;
+    border:2px solid #202020;
+  }
+}
+
+.other-amount{
+  position: relative;
+}
+
+.other-amount .field-label{
+  font-size:22px;
+  top:23%;
+  left:20px;
+}
+
+.other-amount .field-label.focused{
+  top:-16px;
+  font-size:20px;
+  color:#202020;
+}
+
+.address-wrapper{
+  .field-label{
+    padding-right: 10px;
+    &.required-sign{
+      padding-right:18px;
+    }
+    &.focused{
+      padding-right:0;
+    }
+  }
+}
+
+.input-group{
+  .form-control{
+    border-top-left-radius: 0!important;
+    border-bottom-left-radius: 0!important;
+  }
+  &-text{
+    border-radius: 0.5rem;
+    border-color: rgb(209 213 219/1);
+  }
+}
+
+
+/* Change Autocomplete styles in Chrome*/
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  -webkit-text-fill-color: #010101;
+  -webkit-box-shadow: 0 0 0px 1000px #ffffff inset;
+  transition: background-color 5000s ease-in-out 0s;
 }
