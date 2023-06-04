@@ -627,3 +627,10 @@ $(document).on('keyup change focus', '#other-amount', function (){
 $(document).on('change', '#donate-fee-cover', function (e){
     loadDonateAmount();
 })
+
+//=== select 2 initialization
+$('.select2').each(function (i, element){
+    $(element).select2({
+        minimumResultsForSearch: Infinity
+    });
+})
