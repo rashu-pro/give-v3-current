@@ -118,6 +118,8 @@ $(function (event) {
             selector.closest('.recurring-wrapper').find('.form-group').addClass('required-group');
             $('.recurring-period').slideDown('slow');
         } else {
+            selector.closest('.recurring-wrapper').find('.form-group .form-control').val(selector.closest('.recurring-wrapper').find('.form-group .form-control').find('option').first().val());
+            selector.closest('.recurring-wrapper').find('.form-group .form-control').change();
             selector.closest('.recurring-wrapper').find('.form-group .form-control').removeClass('field-invalid');
             selector.closest('.recurring-wrapper').find('.form-group .form-control').removeClass('invalid');
             selector.closest('.recurring-wrapper').find('.error-message').remove();
@@ -542,6 +544,8 @@ $(function (event) {
         }
 
         $('.donate-for-value').html($("#PaymentDescription option:selected").text());
+        $('.recurring-info').hide();
+
         if ($('.checkbox-recurring').is(':checked')) {
             $('.recurring-by-value').html(' ' + $('.recurring-type option:selected').text());
             $('.recurring-length-value').html(' ' + $('.recurring-duration-number').val());
