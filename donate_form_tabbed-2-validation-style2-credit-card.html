@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="node_modules/select2/dist/css/select2.min.css">
     <!-- intl-tel-input -->
     <link rel="stylesheet" href="assets/plugins/intl-tel-input/css/intlTelInput.min.css">
-    <link rel="stylesheet" href="assets/css/style.css?v=2.0.3">
+    <link rel="stylesheet" href="assets/css/style.css?v=2.0.4">
 </head>
 <body>
 
@@ -62,16 +62,16 @@
                                         <div class="check-group-wrapper">
                                             <div class="row">
                                                 <div class="col-6 col-md-3">
-                                                    <button class="btn btn-block btn-amount-box btn-amount-donate-js" data-value="50"><span class="currency-icon">$</span> <span class="amount-number">50</span> </button>
+                                                    <button class="btn btn-block btn-amount-box donateButton" data-value="50"><span class="currency-icon">$</span> <span class="amount-number">50</span> </button>
                                                 </div>
                                                 <div class="col-6 col-md-3">
-                                                    <button class="btn btn-block btn-amount-box btn-amount-donate-js" data-value="100"><span class="currency-icon">$</span> <span class="amount-number">100</span> </button>
+                                                    <button class="btn btn-block btn-amount-box donateButton" data-value="100"><span class="currency-icon">$</span> <span class="amount-number">100</span> </button>
                                                 </div>
                                                 <div class="col-6 col-md-3">
-                                                    <button class="btn btn-block btn-amount-box btn-amount-donate-js" data-value="150"><span class="currency-icon">$</span> <span class="amount-number">150</span> </button>
+                                                    <button class="btn btn-block btn-amount-box donateButton" data-value="150"><span class="currency-icon">$</span> <span class="amount-number">150</span> </button>
                                                 </div>
                                                 <div class="col-6 col-md-3">
-                                                    <button class="btn btn-block btn-amount-box btn-amount-donate-js" data-value="200"><span class="currency-icon">$</span> <span class="amount-number">200</span> </button>
+                                                    <button class="btn btn-block btn-amount-box donateButton" data-value="200"><span class="currency-icon">$</span> <span class="amount-number">200</span> </button>
                                                 </div>
                                             </div>
 
@@ -110,13 +110,16 @@
                                     <div class="col-md-6">
                                         <div class="form-group required-group">
                                             <div class="position-relative">
-                                                <label for="donate-to" class="field-label d-none">Donate to</label>
-                                                <select id="donate-to" data-placeholder="Select a Category" class="form-control input-validation select2">
-                                                    <option value="">Select Category</option>
-                                                    <option value="1">Zakat al Fitr</option>
-                                                    <option value="2">Burial Fund</option>
-                                                    <option value="3">Iftar Fund</option>
-                                                    <option value="4">Ramdan Fund</option>
+                                                <label for="PaymentDescription" class="field-label d-none">Donate to</label>
+                                                <select id="PaymentDescription" data-placeholder="Select a Category" name="PaymentDescription" class="form-control input-validation select2">
+                                                    <option value="">Select One</option>
+                                                    <option value="prod_NZ7hwscGLojFdl">Zakat ul Maal</option>
+                                                    <option value="prod_NZ7hjU7GEqPqtq">Zakat ul Fitr</option>
+                                                    <option value="prod_NZgFxXRJ6xUyHs">Fidya</option>
+                                                    <option value="prod_NZ7hyg9y8ti86I">Construction Fund</option>
+                                                    <option value="prod_NZ7i840vE5Sd1h">Masjid Operations</option>
+                                                    <option value="prod_NZ7i7UuBTGvZwI">Sadaqah</option>
+                                                    <option value="prod_NZ7i1yZnSQnYaN">Iftaar Sponsorship</option>
                                                 </select>
                                             </div>
 
@@ -141,7 +144,7 @@
                                     <div class="row pt-3">
                                         <div class="col-sm-4">
                                             <div class="form-group">
-                                                <label for="recurring-by">Recurring by</label>
+                                                <label for="recurring-by">Recurring by <span class="text-danger required-mark">*</span></label>
                                                 <select id="recurring-by"
                                                         data-placeholder="Select One"
                                                         class="form-control recurring-type input-validation select2">
@@ -156,10 +159,10 @@
 
                                         <div class="col-sm-4">
                                             <div class="form-group recurring-duration">
-                                                <label for="recurring-duration">Recurring Duration</label>
+                                                <label for="recurring-duration">Recurring Duration <span class="text-danger required-mark">*</span></label>
                                                 <select id="recurring-duration"
                                                         data-placeholder="Select Duration"
-                                                        class="form-control input-validation select2">
+                                                        class="form-control input-validation recurring-duration-number select2">
                                                     <option value="">Select Duration</option>
                                                     <option value="1">1</option>
                                                     <option value="2">2</option>
@@ -361,11 +364,13 @@
 
                 <div class="modal-body">
                     <div class="donation-subtitle mb-4">
-                        <h5 class="m-0">Your are about to authorize <strong>$150</strong></h5>
+                        <h5 class="m-0">Your are about to authorize <strong class="donation-amount-value"></strong></h5>
                     </div>
-                    <h5 class="mb-3">Donation For: <span class="weight-medium">Masjid Operations</span> </h5>
-                    <h5 class="mb-3">Recurring Type: <span class="weight-medium">Masjid Operations</span> </h5>
-                    <h5 class="mb-3">Recurring Duration: <span class="weight-medium">Masjid Operations</span> </h5>
+                    <h5 class="mb-3">Donation For: <span class="weight-medium donate-for-value">Zakat ul Fitr</span> </h5>
+                    <div class="recurring-info" style="display:none;">
+                        <h5 class="mb-3">Recurring Type: <span class="weight-medium recurring-by-value"></span> </h5>
+                        <h5 class="mb-3">Recurring Duration: <span class="weight-medium recurring-length-value"></span> </h5>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <div class="btn-holder">
@@ -393,7 +398,7 @@
 <script src="node_modules/select2/dist/js/select2.min.js"></script>
 <!--<script src="assets/js/script.js?v=2.0.1"></script>-->
 <!--<script src="assets/js/live/script-new.js?v=1.0.1"></script>-->
-<script src="assets/js/live/script.js?v=2.0.4"></script>
+<script src="assets/js/live/script.js?v=2.0.6"></script>
 
 <!-- google map api -->
 <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRIIew-eQp2QjI5mRLFOE-qoUnl-qKC38&libraries=places&callback=initMap"></script>

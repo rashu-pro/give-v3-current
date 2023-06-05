@@ -8,7 +8,7 @@ $(function (event) {
     var recurringDuration = getUrlParameter('recurringDuration');
     var slug = $('#company-slug').val();
 
-
+    
 
     if (type == "MONTHLY" || type == "monthly") {
         $('#IsRecurringGive').val(true);
@@ -24,7 +24,7 @@ $(function (event) {
         $('#IsRecurringGive').val(true);
         $('#IsRecurringGive').attr('checked', true);
         $('.checkbox-recurring').trigger('change');
-        // $('.checkbox-recurring').trigger('click');
+       // $('.checkbox-recurring').trigger('click');
         $('.recurring-period').slideDown('slow');
         $('.recurring-period').show();
         $('.recurring-type').val('day');
@@ -36,7 +36,7 @@ $(function (event) {
         $('#IsRecurringGive').val(true);
         $('#IsRecurringGive').attr('checked', true);
         $('.checkbox-recurring').trigger('change');
-        // $('.checkbox-recurring').trigger('click');
+       // $('.checkbox-recurring').trigger('click');
         $('.recurring-period').slideDown('slow');
         $('.recurring-period').show();
         $('.recurring-type').val('week');
@@ -115,13 +115,8 @@ $(function (event) {
     //=== RECURRING WRAPPER TOGGLE
     function recurringWrapperToggle(selector){
         if (selector.prop('checked') == true) {
-            selector.closest('.recurring-wrapper').find('.form-group').addClass('required-group');
             $('.recurring-period').slideDown('slow');
         } else {
-            selector.closest('.recurring-wrapper').find('.form-group .form-control').removeClass('field-invalid');
-            selector.closest('.recurring-wrapper').find('.form-group .form-control').removeClass('invalid');
-            selector.closest('.recurring-wrapper').find('.error-message').remove();
-            selector.closest('.recurring-wrapper').find('.form-group').removeClass('required-group');
             $('.recurring-period').slideUp('slow');
         }
     }
@@ -133,8 +128,8 @@ $(function (event) {
     //}
     $('.recurring-type').on('change', function () {
         var slug = $('#company-slug').val(),
-          type = $('.recurring-type option:selected').val();
-        if (slug == 'mfc') {
+            type = $('.recurring-type option:selected').val();
+        if (slug == 'mfc') {      
             if (type == "month") {
                 $('.recurring-duration').hide();
             } else {
@@ -148,6 +143,43 @@ $(function (event) {
     if ($('.donation-wrapper').length > 0) {
         // $('.donation-wrapper').css('margin-top',$('header').height());
     }
+
+    // format phone number
+    // Phone formatting: (555) 555-5555
+    $(".format-phone").on("keyup paste", function (event) {
+        // console.log('typed');
+
+        // Don't run for backspace key entry, otherwise it bugs out
+        if (event.which != 8) {
+
+            // Remove invalid chars from the input
+            var input = this.value.replace(/[^0-9\(\)\s\-]/g, "");
+            var inputlen = input.length;
+            // Get just the numbers in the input
+            var numbers = this.value.replace(/\D/g, '');
+            var numberslen = numbers.length;
+            // Value to store the masked input
+            var newval = "";
+
+            // Loop through the existing numbers and apply the mask
+            for (var i = 0; i < numberslen; i++) {
+                if (i == 0) newval = "(" + numbers[i];
+                else if (i == 2) newval += numbers[i] + ") ";
+                else if (i == 6) newval += "-" + numbers[i];
+                else newval += numbers[i];
+            }
+
+            // Re-add the non-digit characters to the end of the input that the user entered and that match the mask.
+            if (inputlen >= 1 && numberslen == 0 && input[0] == "(") newval = "(";
+            else if (inputlen >= 6 && numberslen == 3 && input[4] == ")" && input[5] == " ") newval += ") ";
+            else if (inputlen >= 5 && numberslen == 3 && input[4] == ")") newval += " ";
+            else if (inputlen >= 6 && numberslen == 3 && input[5] == " ") newval += " ";
+            else if (inputlen >= 10 && numberslen == 6 && input[9] == "-") newval += "-";
+
+            $(this).val(newval.substring(0, 14));
+
+        }
+    });
 
     $(".format-cvv").on("keyup paste", function (event) {
         // console.log('typed');
@@ -181,7 +213,7 @@ $(function (event) {
             // else if(inputlen>=10&&numberslen==6&&input[9]=="-")
             //     newval+="-";
 
-            $(this).val(newval.substring(0, 4));
+            $(this).val(newval.substring(0, 5));
 
         }
     });
@@ -263,8 +295,8 @@ $(function (event) {
         callback: function (result) {
 
             var status = (result.validLen && result.validLuhn) ? 'valid' : 'invalid',
-              message = '',
-              types = '';
+                message = '',
+                types = '';
 
             // Get the names of all accepted card types to use in the status message.
             for (i in result.opts.types) {
@@ -314,7 +346,6 @@ $(function (event) {
             updatedAmount = updatedAmount.toFixed(2);
 
             $('#donate-amount').html('$' + updatedAmount);
-            $('.donation-amount-value').html('$' + updatedAmount);
         }
 
         if ($('#donate-fee-cover').prop("checked") == false) {
@@ -326,7 +357,6 @@ $(function (event) {
             $('#txtAmount').val(updatedAmount);
             $('#amountProcessingFee').val(0);
             $('#donate-amount').html('$' + updatedAmount);
-            $('.donation-amount-value').html('$' + updatedAmount);
         }
     }
 
@@ -361,9 +391,6 @@ $(function (event) {
         $('#txtAmount').attr('data-solid', donateAmount);
 
         loadDonateAmount();
-
-        if(!item.closest('.form-group').hasClass('required-group')) return;
-        donateAmountValidation(item);
     });
 
     $('#other-amount').focus(function (e) {
@@ -402,9 +429,9 @@ $(function (event) {
     //for getting queryParam    
     function getUrlParameter(sParam) {
         var sPageURL = window.location.search.substring(1),
-          sURLVariables = sPageURL.split('&'),
-          sParameterName,
-          i;
+            sURLVariables = sPageURL.split('&'),
+            sParameterName,
+            i;
 
         for (i = 0; i < sURLVariables.length; i++) {
             sParameterName = sURLVariables[i].split('=');
@@ -512,97 +539,5 @@ $(function (event) {
         } else {
             countryFieldSelector.closest('.field-group').find('.state-field-group .state-holder').html("<input type='text' class='form-control field-normal state' name='AddressState' id='AddressState'>");
         }
-    }
-
-    /**
-     * New Scripts
-     * 05/06/2023
-     */
-
-      //=== form validation [client-side]
-    let inputFieldSelector = '.form-control';
-    let inputFieldRequiredSelector = '.form-group.required-group .input-validation';
-    let inputInvalidSelector = '.input-validation.invalid';
-    let formGroupSelector = '.form-group';
-    let invalidClassName = 'field-invalid';
-    let validClassName = 'field-validated';
-    let errorMessageClassName = 'error-message';
-    let errorMessage = 'this field is required!';
-    let donateAmountButtonSelector = '.btn-amount-donate-js';
-
-//=== on submit button click
-    $(document).on('click', '#btnCharge', function (e){
-        e.preventDefault();
-        $(inputFieldRequiredSelector).each(function (i, element){
-            singleValidation($(element), $(element).closest(formGroupSelector), invalidClassName, validClassName, errorMessageClassName, errorMessage);
-        });
-        if($(inputInvalidSelector).length>0) {
-            $(inputInvalidSelector).first().focus();
-            return;
-        }
-
-        $('.donate-for-value').html($("#PaymentDescription option:selected").text());
-        if ($('.checkbox-recurring').is(':checked')) {
-            $('.recurring-by-value').html(' ' + $('.recurring-type option:selected').text());
-            $('.recurring-length-value').html(' ' + $('.recurring-duration-number').val());
-            $('.recurring-info').show();
-        }
-        //=== submit the form
-        submitForm();
-    });
-
-//=== on field keyup event
-    $(document).on('keyup change', inputFieldRequiredSelector, function (e) {
-        let self = $(this);
-        if(self.val().length>0){
-            self.removeClass('invalid');
-            self.removeClass('field-invalid');
-            self.closest('.form-group').find('.error-message').remove();
-        }
-    });
-
-//=== on field blur event
-    $(document).on('blur', inputFieldRequiredSelector, function (e){
-        singleValidation($(this), $(this).closest(formGroupSelector), invalidClassName, validClassName, errorMessageClassName, errorMessage);
-    });
-
-//=== allow only number and -
-    $(document).on('keypress', '.input-phone-number', function (e){
-        if(e.which===45) return;
-        if(e.which<48 || e.which>58) e.preventDefault();
-    });
-
-//=== allow only number
-    $(document).on('keypress', '.input-number', function (e){
-        if(e.which<48 || e.which>58) e.preventDefault();
-    });
-
-    $(document).on('keyup change focus', '#other-amount', function (){
-        let self = $(this);
-        if(self.val()<=0) return;
-        $(donateAmountButtonSelector).removeClass('active');
-        setOtherAmountValue();
-        loadDonateAmount();
-
-        if(!self.closest('.form-group').hasClass('required-group')) return;
-        donateAmountValidation(self);
-    });
-
-    $(document).on('change', '#donate-fee-cover', function (e){
-        loadDonateAmount();
-    })
-
-//=== select 2 initialization
-    $('.select2').each(function (i, element){
-        $(element).select2({
-            minimumResultsForSearch: Infinity
-        });
-    })
-
-    //=== Function Definitions
-    function donateAmountValidation(self){
-        self.closest('.form-group').find('.input-validation').removeClass('invalid');
-        self.closest('.form-group').find('.input-validation').removeClass('field-invalid');
-        self.closest(formGroupSelector).find('.'+errorMessageClassName).remove();
     }
 });
